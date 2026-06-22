@@ -1,0 +1,107 @@
+[
+  {
+    "phase": "preflight",
+    "title": "Before Start",
+    "items": [
+      { "id": "pf-1", "challenge": "Preflight inspection", "response": "COMPLETE", "isChecked": false },
+      { "id": "pf-2", "challenge": "Seats, belts", "response": "ADJUST / SECURE", "isChecked": false },
+      { "id": "pf-3", "challenge": "Fuel selector", "response": "BOTH", "isChecked": false },
+      { "id": "pf-4", "challenge": "Avionics", "response": "OFF", "isChecked": false }
+    ]
+  },
+  {
+    "phase": "taxiOut",
+    "title": "Taxi",
+    "items": [
+      { "id": "tx-1", "challenge": "Brakes", "response": "CHECK", "isChecked": false },
+      { "id": "tx-2", "challenge": "Flight instruments", "response": "CHECK", "isChecked": false }
+    ]
+  },
+  {
+    "phase": "takeoff",
+    "title": "Before Takeoff",
+    "items": [
+      { "id": "to-1", "challenge": "Flaps", "response": "SET FOR TAKEOFF", "isChecked": false },
+      { "id": "to-2", "challenge": "Trim", "response": "SET", "isChecked": false },
+      { "id": "to-3", "challenge": "Engine instruments", "response": "GREEN", "isChecked": false },
+      { "id": "to-4", "challenge": "Transponder", "response": "ALT", "isChecked": false }
+    ]
+  },
+  {
+    "phase": "afterTakeoff",
+    "title": "After Takeoff",
+    "items": [
+      { "id": "at-1", "challenge": "Airspeed", "response": "Vy / POSITIVE RATE", "isChecked": false },
+      { "id": "at-2", "challenge": "Landing gear", "response": "UP", "isChecked": false },
+      { "id": "at-3", "challenge": "Flaps", "response": "UP", "isChecked": false },
+      { "id": "at-4", "challenge": "Climb power", "response": "SET", "isChecked": false },
+      { "id": "at-5", "challenge": "Landing/taxi lights", "response": "AS REQUIRED", "isChecked": false }
+    ]
+  },
+  {
+    "phase": "climb",
+    "title": "Climb",
+    "items": [
+      { "id": "cl-1", "challenge": "Power", "response": "CLIMB SET", "isChecked": false },
+      { "id": "cl-2", "challenge": "Mixture", "response": "ADJUST", "isChecked": false },
+      { "id": "cl-3", "challenge": "Engine instruments", "response": "MONITOR", "isChecked": false }
+    ]
+  },
+  {
+    "phase": "cruise",
+    "title": "Cruise",
+    "items": [
+      { "id": "cr-1", "challenge": "Power", "response": "CRUISE SET", "isChecked": false },
+      { "id": "cr-2", "challenge": "Mixture", "response": "LEAN", "isChecked": false },
+      { "id": "cr-3", "challenge": "Engine instruments", "response": "MONITOR", "isChecked": false },
+      { "id": "cr-4", "challenge": "Fuel", "response": "CHECK / BALANCE", "isChecked": false }
+    ]
+  },
+  {
+    "phase": "descent",
+    "title": "Descent",
+    "items": [
+      { "id": "ds-1", "challenge": "Altimeter", "response": "SET", "isChecked": false },
+      { "id": "ds-2", "challenge": "Mixture", "response": "ENRICH AS REQUIRED", "isChecked": false },
+      { "id": "ds-3", "challenge": "Landing brief", "response": "COMPLETE", "isChecked": false }
+    ]
+  },
+  {
+    "phase": "approach",
+    "title": "Before Landing",
+    "items": [
+      { "id": "ap-1", "challenge": "Fuel selector", "response": "BOTH / FULLEST", "isChecked": false },
+      { "id": "ap-2", "challenge": "Mixture", "response": "RICH", "isChecked": false },
+      { "id": "ap-3", "challenge": "Landing gear", "response": "DOWN", "isChecked": false },
+      { "id": "ap-4", "challenge": "Flaps", "response": "AS REQUIRED", "isChecked": false },
+      { "id": "ap-5", "challenge": "Landing light", "response": "ON", "isChecked": false }
+    ]
+  },
+  {
+    "phase": "landing",
+    "title": "Landing",
+    "items": [
+      { "id": "ld-1", "challenge": "Touchdown", "response": "MAINS FIRST", "isChecked": false },
+      { "id": "ld-2", "challenge": "Brakes", "response": "AS REQUIRED", "isChecked": false }
+    ]
+  },
+  {
+    "phase": "taxiIn",
+    "title": "After Landing",
+    "items": [
+      { "id": "ti-1", "challenge": "Flaps", "response": "UP", "isChecked": false },
+      { "id": "ti-2", "challenge": "Transponder", "response": "STBY", "isChecked": false },
+      { "id": "ti-3", "challenge": "Landing/strobe lights", "response": "AS REQUIRED", "isChecked": false }
+    ]
+  },
+  {
+    "phase": "shutdown",
+    "title": "Shutdown",
+    "items": [
+      { "id": "sd-1", "challenge": "Avionics", "response": "OFF", "isChecked": false },
+      { "id": "sd-2", "challenge": "Mixture", "response": "IDLE CUTOFF", "isChecked": false },
+      { "id": "sd-3", "challenge": "Magnetos", "response": "OFF", "isChecked": false },
+      { "id": "sd-4", "challenge": "Master", "response": "OFF", "isChecked": false }
+    ]
+  }
+]
