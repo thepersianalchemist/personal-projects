@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flight Checklist HUD — Ray-Ban Display preview</title>
+<style>
+  :root { --hud:#9ff7c4; --hud-dim:#3a6b54; --accent:#ffd66b; }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; font-family:-apple-system,BlinkMacSystemFont,"SF Pro",Segoe UI,Roboto,sans-serif;
+    background:#0b0e0f; color:#dfe7e4; display:flex; flex-direction:column; align-items:center;
+    padding:28px 16px 60px;
+  }
+  h1 { font-size:18px; font-weight:600; letter-spacing:.2px; margin:0 0 4px; }
+  .sub { color:#7d8a86; font-size:13px; margin-bottom:22px; text-align:center; }
+  .sub b { color:var(--hud); font-weight:600; }
+
+  /* The world seen through the glasses */
+  .scene {
+    position:relative; width:760px; max-width:100%; aspect-ratio:16/9; border-radius:22px; overflow:hidden;
+    box-shadow:0 18px 50px rgba(0,0,0,.55); border:1px solid #1c2522;
+    background:
+      linear-gradient(180deg,#1a2c3f 0%, #355a7a 38%, #6f93a8 60%, #355330 60.5%, #243a22 100%);
+  }
+  /* sun glow + cockpit hint */
+  .scene::before {
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(60% 40% at 72% 22%, rgba(255,235,190,.35), transparent 60%);
+  }
+  .panel {
+    position:absolute; left:0; right:0; bottom:0; height:26%;
+    background:linear-gradient(180deg,#11161a, #05080a); border-top:2px solid #000;
+  }
+  .panel::after{
+    content:""; position:absolute; top:18%; left:8%; width:26%; height:55%; border-radius:8px;
+    background:repeating-linear-gradient(90deg,#0c1418 0 14px,#0a1013 14px 28px);
+    box-shadow:38% 0 0 #0a1013; opacity:.8;
+  }
+  .glare { position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(115deg, rgba(255,255,255,.06) 0 12%, transparent 30%); }
+
+  /* The in-lens HUD card (right side, like Ray-Ban Display) */
+  .hud {
+    position:absolute; top:9%; right:6%; width:300px; max-width:46%;
+    background:rgba(8,20,16,.62); backdrop-filter:blur(2px);
+    border:1px solid rgba(159,247,196,.35); border-radius:12px; padding:11px 12px 12px;
+    color:var(--hud); font-size:13px; line-height:1.32;
+    box-shadow:0 0 22px rgba(80,255,170,.10), inset 0 0 0 1px rgba(159,247,196,.05);
+    text-shadow:0 0 6px rgba(120,255,180,.25);
+  }
+  .hud .head {
+    display:flex; justify-content:space-between; align-items:baseline; gap:8px;
+    font-weight:700; letter-spacing:.6px; font-size:13.5px; padding-bottom:7px; margin-bottom:7px;
+    border-bottom:1px solid rgba(159,247,196,.22);
+  }
+  .hud .head .count { color:var(--hud-dim); font-weight:600; font-size:11.5px; }
+  .row { display:flex; gap:7px; padding:2.5px 0; align-items:flex-start; opacity:.92; }
+  .row .box { width:15px; flex:0 0 15px; text-align:center; opacity:.85; }
+  .row .txt { flex:1; }
+  .row .txt .resp { color:#dffbe9; opacity:.62; }
+  .row.done { opacity:.45; }
+  .row.done .txt .chal { text-decoration:line-through; text-decoration-color:rgba(159,247,196,.5); }
+  .row.focus {
+    background:linear-gradient(90deg, rgba(159,247,196,.16), rgba(159,247,196,0));
+    margin:0 -8px; padding-left:8px; padding-right:8px; border-radius:6px;
+    box-shadow:inset 2px 0 0 var(--hud);
+  }
+  .row.focus .box { color:var(--accent); }
+  .complete { color:var(--accent); font-weight:600; padding-top:6px; }
+
+  /* phase banner that flashes on auto-switch */
+  .banner {
+    position:absolute; top:9%; left:6%; padding:5px 11px; border-radius:8px; font-size:12px; font-weight:700;
+    letter-spacing:.5px; color:#06140d; background:var(--hud); opacity:0; transform:translateY(-6px);
+    transition:.3s; box-shadow:0 4px 14px rgba(80,255,170,.4);
+  }
+  .banner.show { opacity:1; transform:translateY(0); }
+  .banner.tap { background:var(--accent); }
+
+  /* telemetry strip bottom-left in lens */
+  .telem {
+    position:absolute; left:6%; bottom:32%; font-size:11.5px; color:var(--hud);
+    text-shadow:0 0 6px rgba(120,255,180,.3); letter-spacing:.4px; opacity:.92;
+    background:rgba(8,20,16,.5); border:1px solid rgba(159,247,196,.25); border-radius:8px; padding:6px 9px;
+  }
+  .telem .dot { color:#69ff9f; }
+  .telem b { color:#eafff3; font-variant-numeric:tabular-nums; }
+
+  .controls { margin-top:20px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center; }
+  button {
+    background:#16201d; color:var(--hud); border:1px solid #2c3d38; border-radius:9px; padding:9px 16px;
+    font-size:14px; cursor:pointer; font-weight:600;
+  }
+  button:hover { background:#1d2a26; }
+  .legend { color:#6f7c78; font-size:12px; max-width:760px; text-align:center; margin-top:16px; line-height:1.5; }
+  .legend code { color:#bfeed6; background:#10302440; padding:1px 5px; border-radius:4px; }
+</style>
+</head>
+<body>
+  <h1>Flight Checklist HUD — what it looks like in the lens</h1>
+  <div class="sub">Cessna 172P · driven by <b>Sentry</b> GDL90 telemetry · auto-plays a full flight below</div>
+
+  <div class="scene">
+    <div class="panel"></div>
+    <div class="banner" id="banner"></div>
+    <div class="telem" id="telem"><span class="dot">●</span> SENTRY · <b id="gs">0</b> kt · <b id="alt">12</b> ft · <b id="vs">0</b> fpm</div>
+    <div class="hud" id="hud"></div>
+    <div class="glare"></div>
+  </div>
+
+  <div class="controls">
+    <button id="replay">▶ Replay flight</button>
+    <button id="step">Step ▸</button>
+  </div>
+  <div class="legend">
+    This is a faithful mock of the <code>DisplayState</code> the engine produces: green items are pending,
+    <code>›</code> is the Neural-Band cursor, dimmed/struck-through are checked. Airborne phases switch
+    <b>automatically</b> from Sentry data; ground checklists (Engine&nbsp;Start, After&nbsp;Start, Run&nbsp;Up) are
+    <b>tap-through</b>. The list windows to 5 lines to fit the display.
+  </div>
+
+<script>
+// Real checklist data (subset of fields) mirroring checklists.json
+const SEGMENTS = [
+  {id:"before_start",  title:"Before Start",  auto:"preflight", gs:0, alt:12, vs:0, items:[
+    ["Parking brake","SET"],["Preflight inspection","COMPLETED"],["Passenger / crew brief","COMPLETED"],
+    ["Seats & seatbelts","UPRIGHT-LOCKED"],["Fuel selector","BOTH"],["Avionics switch","OFF"]]},
+  {id:"engine_start",  title:"Engine Start",  auto:null, gs:0, alt:12, vs:0, items:[
+    ["Mixture","RICH"],["Carb heat","COLD – IN & OFF"],["Throttle","OPEN 1/8 IN"],["Prop & blast area","CLEAR"],
+    ["Ignition","START"],["Oil pressure","CHECKED"],["Mixture","LEAN FOR TAXI"]]},
+  {id:"after_start",   title:"After Start",   auto:null, gs:0, alt:12, vs:0, items:[
+    ["Avionics switch","ON"],["GPSMAP 696","SET"],["AV-30-Cs","INITIALIZED"],["Altimeter","SET"],
+    ["XPDR","SET & ON ALT"],["Flight instruments","NO RED FLAGS"]]},
+  {id:"before_taxi",   title:"Before Taxi",   auto:"taxiOut", gs:9, alt:12, vs:0, items:[
+    ["Parking brake","RELEASED"],["Lights","TAXI LIGHT ON"],["Brake check","COMPLETED"],
+    ["Airport diagram","SET & BRIEFED"],["Taxi clearance","OBTAINED"]]},
+  {id:"run_up",        title:"Run Up",        auto:null, gs:0, alt:12, vs:0, items:[
+    ["Parking brake","SET"],["Flight controls","FREE"],["Throttle","1700 RPM"],["Magnetos","CHECK"],
+    ["Carb heat","CHECK"],["Engine instruments","TESTED & OK"],["Idle","CHECKED"]]},
+  {id:"before_takeoff",title:"Before Takeoff",auto:"takeoff", gs:0, alt:12, vs:0, items:[
+    ["Clearance","OBTAINED"],["Trim","SET FOR TAKEOFF"],["Flaps","SET & CONFIRMED"],
+    ["Doors & windows","LATCHED"],["Takeoff briefing","COMPLETE"],["Parking brake","REMOVED"]]},
+  {id:"climb",         title:"Climb",         auto:"afterTakeoff", gs:75, alt:900, vs:760, items:[
+    ["Flaps","ZERO & CONFIRMED"],["Throttle","FULL"],["Mixture","SET (50° ROP >3000')"],
+    ["Lights / carb / pitot heat","CHECKED & SET"],["CBs / flt & eng instruments","CHECKED"]]},
+  {id:"cruise",        title:"Cruise / Pre-Maneuver", auto:"cruise", gs:122, alt:6500, vs:0, items:[
+    ["Power / airspeed / trim","2300 RPM"],["Mixture","50° ROP"],["Lights / carb / pitot","SET"],
+    ["CBs / instruments (set TAS)","CHECKED"],["Flight plan","SET & BRIEFED"]]},
+  {id:"in_range",      title:"In Range / Descent / Landing", auto:"descent", gs:90, alt:2200, vs:-620, items:[
+    ["ATIS / ATC requests","OBTAINED"],["Altimeter","SET"],["GPS / approach","SET & BRIEFED"],
+    ["Comms / navs","SET & ID'D"],["HDG bug / OBS / timer","SET & READY"],["XPDR","SET & ON ALT"],
+    ["Fuel selector","BOTH FOR LANDING"],["Mixture","ENRICH"],["Carb heat","ON BEFORE DESCENT"],
+    ["Seats & seatbelts","LOCKED"],["Rudder trim","NEUTRAL"]]},
+  {id:"after_landing", title:"After Landing", auto:"taxiIn", gs:11, alt:12, vs:0, items:[
+    ["Lights / pitot heat","SET / OFF"],["Carb heat","COLD – IN & OFF"],["Flaps","ZERO"],
+    ["Trim","SET FOR TAKEOFF"],["Taxi clearance","COMPLETE"]]},
+  {id:"shutdown",      title:"Shutdown",      auto:"shutdown", gs:0, alt:12, vs:0, items:[
+    ["Parking brake","SET"],["Mixture","IDLE CUTOFF"],["Magnetos","OFF"],["Master switch","OFF"],
+    ["Hobbs & tach","NOTED"],["Control lock","INSTALLED"]]},
+];
+const TOTAL = SEGMENTS.length;
+const PHASE_NAME = {preflight:"PREFLIGHT",taxiOut:"TAXI",takeoff:"TAKEOFF",afterTakeoff:"AFTER TAKEOFF",
+  cruise:"CRUISE",descent:"DESCENT",taxiIn:"TAXI IN",shutdown:"SHUTDOWN"};
+
+const hud=document.getElementById('hud'), banner=document.getElementById('banner');
+const gsEl=document.getElementById('gs'), altEl=document.getElementById('alt'), vsEl=document.getElementById('vs');
+
+function windowItems(items, focus){
+  const W=5; let half=(W-1>>1); let start=Math.max(0,focus-half);
+  let end=Math.min(items.length,start+W); start=Math.max(0,end-W);
+  return {start,end};
+}
+function render(segIdx, focus, checked){
+  const seg=SEGMENTS[segIdx];
+  gsEl.textContent=seg.gs; altEl.textContent=seg.alt; vsEl.textContent=(seg.vs>0?'+':'')+seg.vs;
+  const {start,end}=windowItems(seg.items, focus);
+  let rows='';
+  for(let i=start;i<end;i++){
+    const [c,r]=seg.items[i]; const isDone=checked.has(i); const isFocus=i===focus && focus<seg.items.length;
+    rows+=`<div class="row ${isDone?'done':''} ${isFocus?'focus':''}">
+      <div class="box">${isDone?'✓':(isFocus?'›':'·')}</div>
+      <div class="txt"><span class="chal">${c}</span> <span class="resp">— ${r}</span></div></div>`;
+  }
+  const done = checked.size===seg.items.length;
+  hud.innerHTML=`<div class="head"><span>${seg.title.toUpperCase()}</span>
+    <span class="count">${segIdx+1}/${TOTAL}</span></div>${rows}
+    ${done?`<div class="complete">✓ ${seg.title} complete</div>`:''}`;
+}
+function flashBanner(seg){
+  if(seg.auto){ banner.textContent='✈ '+(PHASE_NAME[seg.auto]||seg.title.toUpperCase()); banner.className='banner show'; }
+  else { banner.textContent='✋ TAP-THROUGH'; banner.className='banner show tap'; }
+  setTimeout(()=>banner.classList.remove('show'),1400);
+}
+
+let timer=null;
+function play(){
+  clearInterval(timer);
+  let segIdx=0, focus=0, checked=new Set(); let phase='enter';
+  flashBanner(SEGMENTS[0]); render(0,0,checked);
+  timer=setInterval(()=>{
+    const seg=SEGMENTS[segIdx];
+    if(phase==='enter'){ phase='check'; return; }
+    if(focus<seg.items.length){ checked.add(focus); focus++; render(segIdx,focus,checked); return; }
+    // segment complete -> advance
+    render(segIdx,focus,checked);
+    segIdx++;
+    if(segIdx>=TOTAL){ clearInterval(timer); return; }
+    focus=0; checked=new Set(); phase='enter';
+    flashBanner(SEGMENTS[segIdx]); render(segIdx,0,checked);
+  }, 620);
+}
+
+// manual stepper
+let s={seg:0,focus:0,checked:new Set(),started:false};
+function step(){
+  clearInterval(timer);
+  if(!s.started){ s.started=true; flashBanner(SEGMENTS[0]); render(0,0,s.checked); return; }
+  const seg=SEGMENTS[s.seg];
+  if(s.focus<seg.items.length){ s.checked.add(s.focus); s.focus++; render(s.seg,s.focus,s.checked); return; }
+  s.seg=(s.seg+1)%TOTAL; s.focus=0; s.checked=new Set();
+  flashBanner(SEGMENTS[s.seg]); render(s.seg,0,s.checked);
+}
+document.getElementById('replay').onclick=()=>{ s={seg:0,focus:0,checked:new Set(),started:false}; play(); };
+document.getElementById('step').onclick=()=>{ clearInterval(timer); step(); };
+
+play();
+</script>
+</body>
+</html>
