@@ -3,13 +3,16 @@ import Foundation
 /// Immutable snapshot of what the glasses should render right now. The
 /// Ray-Ban Display layer is a pure function of this struct.
 public struct DisplayState: Equatable {
-    public var phase: FlightPhase
+    public var segmentId: String
     public var title: String
     public var items: [ChecklistItem]
-    /// Index of the currently focused item, or nil if there is no checklist /
-    /// the list is complete.
+    public var notes: [String]
+    /// Index of the currently focused item, or nil if the segment is complete.
     public var focusedIndex: Int?
     public var isComplete: Bool
+    /// Position of this segment within the card, for an "n / total" indicator.
+    public var segmentIndex: Int
+    public var segmentCount: Int
 
     public var focusedItem: ChecklistItem? {
         guard let i = focusedIndex, items.indices.contains(i) else { return nil }
@@ -19,95 +22,143 @@ public struct DisplayState: Equatable {
 
 /// Bridges phase detection, checklist data and user input into a single
 /// `DisplayState`. The companion app:
-///   1. forwards `PhaseDetector` transitions to `setPhase(_:)`
-///   2. forwards Neural Band / frame-tap gestures to advance/back/toggle
+///   1. forwards `PhaseDetector` transitions to `setPhase(_:)` (auto-switching)
+///   2. forwards Neural Band / frame-tap gestures to advance / back / next / prev
 ///   3. renders `onDisplayUpdate` on the glasses
+///
+/// Auto-switching is forward-only: a detected phase never drags the HUD back to
+/// an earlier segment (e.g. a momentary stop during run-up reporting "preflight"
+/// must not jump back to Before Start). The pilot can always move manually.
 public final class ChecklistController {
 
     public private(set) var state: DisplayState
     public var onDisplayUpdate: ((DisplayState) -> Void)?
 
     private let store: ChecklistStore
-    private var currentPhase: FlightPhase
-    private var items: [ChecklistItem]
-    private var focused: Int?
+    /// Per-segment item state, parallel to `store.segments`, so check marks
+    /// persist when switching back and forth.
+    private var itemsBySegment: [[ChecklistItem]]
+    private var current: Int
+    private var focus: Int?
 
-    public init(store: ChecklistStore, initialPhase: FlightPhase = .preflight) {
+    public init(store: ChecklistStore, startAt segmentIndex: Int = 0) {
         self.store = store
-        self.currentPhase = initialPhase
-        let list = store.checklist(for: initialPhase)
-        self.items = list?.items ?? []
-        self.focused = (list?.items.isEmpty == false) ? 0 : nil
-        self.state = ChecklistController.makeState(phase: initialPhase,
-                                                   title: list?.title ?? initialPhase.displayName,
-                                                   items: items,
-                                                   focused: focused)
+        self.itemsBySegment = store.segments.map { $0.items }
+        let start = store.segments.indices.contains(segmentIndex) ? segmentIndex : 0
+        self.current = start
+        self.focus = store.segments.isEmpty ? nil
+            : ChecklistController.firstUnchecked(store.segments[start].items)
+        self.state = ChecklistController.makeState(store: store,
+                                                   items: itemsBySegment,
+                                                   current: current,
+                                                   focus: focus)
     }
 
-    /// Switches to a new phase's checklist, resetting focus and check marks.
-    /// Idempotent: re-setting the current phase is a no-op so a steady phase
-    /// doesn't wipe the pilot's progress.
+    // MARK: - Auto switching
+
+    /// Switches to the segment a detected phase maps to, forward-only.
     public func setPhase(_ phase: FlightPhase) {
-        guard phase != currentPhase else { return }
-        currentPhase = phase
-        let list = store.checklist(for: phase)
-        items = list?.items ?? []
-        focused = items.isEmpty ? nil : 0
-        publish(title: list?.title ?? phase.displayName)
+        guard let target = store.segmentIndex(for: phase), target > current else { return }
+        switchTo(target)
     }
 
-    /// Checks the focused item and advances to the next unchecked one.
+    // MARK: - Manual navigation (gestures)
+
+    /// Checks the focused item and advances; rolls into the next segment at the end.
     public func advance() {
-        guard let i = focused, items.indices.contains(i) else { return }
-        items[i].isChecked = true
-        focused = items.indices.contains(i + 1) ? i + 1 : nil
-        publish()
+        guard !store.segments.isEmpty else { return }
+        if let i = focus, itemsBySegment[current].indices.contains(i) {
+            itemsBySegment[current][i].isChecked = true
+            if let next = ChecklistController.nextIndex(after: i, in: itemsBySegment[current]) {
+                focus = next
+                publish()
+                return
+            }
+        }
+        // Segment finished → move to the next one, else just publish completion.
+        if current + 1 < store.segments.count { switchTo(current + 1) } else { focus = nil; publish() }
     }
 
-    /// Moves focus to the previous item without changing check state.
+    /// Moves focus to the previous item without changing its check state.
     public func back() {
-        guard let i = focused else {
-            focused = items.isEmpty ? nil : items.count - 1
-            publish()
-            return
+        guard itemsBySegment.indices.contains(current) else { return }
+        guard let i = focus else {
+            focus = itemsBySegment[current].isEmpty ? nil : itemsBySegment[current].count - 1
+            publish(); return
         }
-        if i > 0 { focused = i - 1; publish() }
+        if i > 0 { focus = i - 1; publish() }
+    }
+
+    /// Jumps to the next checklist segment (e.g. tap-through on the ground).
+    public func nextSegment() {
+        if current + 1 < store.segments.count { switchTo(current + 1) }
+    }
+
+    /// Jumps to the previous checklist segment.
+    public func prevSegment() {
+        if current > 0 { switchTo(current - 1) }
     }
 
     /// Toggles the focused item's check state in place.
     public func toggle() {
-        guard let i = focused, items.indices.contains(i) else { return }
-        items[i].isChecked.toggle()
+        guard itemsBySegment.indices.contains(current),
+              let i = focus, itemsBySegment[current].indices.contains(i) else { return }
+        itemsBySegment[current][i].isChecked.toggle()
         publish()
     }
 
-    /// Clears all check marks and returns focus to the top.
+    /// Clears check marks for the current segment and returns focus to the top.
     public func reset() {
-        for idx in items.indices { items[idx].isChecked = false }
-        focused = items.isEmpty ? nil : 0
+        guard itemsBySegment.indices.contains(current) else { return }
+        for idx in itemsBySegment[current].indices { itemsBySegment[current][idx].isChecked = false }
+        focus = itemsBySegment[current].isEmpty ? nil : 0
         publish()
     }
 
-    // MARK: - State plumbing
+    // MARK: - Internals
 
-    private func publish(title: String? = nil) {
-        let t = title ?? state.title
-        state = ChecklistController.makeState(phase: currentPhase,
-                                              title: t,
-                                              items: items,
-                                              focused: focused)
+    private func switchTo(_ index: Int) {
+        guard store.segments.indices.contains(index), index != current else { return }
+        current = index
+        focus = ChecklistController.firstUnchecked(itemsBySegment[index])
+        publish()
+    }
+
+    private func publish() {
+        state = ChecklistController.makeState(store: store,
+                                              items: itemsBySegment,
+                                              current: current,
+                                              focus: focus)
         onDisplayUpdate?(state)
     }
 
-    private static func makeState(phase: FlightPhase,
-                                  title: String,
-                                  items: [ChecklistItem],
-                                  focused: Int?) -> DisplayState {
-        let complete = !items.isEmpty && items.allSatisfy { $0.isChecked }
-        return DisplayState(phase: phase,
-                            title: title,
-                            items: items,
-                            focusedIndex: focused,
-                            isComplete: complete)
+    private static func firstUnchecked(_ items: [ChecklistItem]) -> Int? {
+        items.isEmpty ? nil : (items.firstIndex { !$0.isChecked } ?? 0)
+    }
+
+    private static func nextIndex(after i: Int, in items: [ChecklistItem]) -> Int? {
+        items.indices.contains(i + 1) ? i + 1 : nil
+    }
+
+    private static func makeState(store: ChecklistStore,
+                                  items: [[ChecklistItem]],
+                                  current: Int,
+                                  focus: Int?) -> DisplayState {
+        guard store.segments.indices.contains(current) else {
+            return DisplayState(segmentId: "", title: "", items: [], notes: [],
+                                focusedIndex: nil, isComplete: false,
+                                segmentIndex: 0, segmentCount: 0)
+        }
+        let seg = store.segments[current]
+        let segItems = items[current]
+        let complete = !segItems.isEmpty && segItems.allSatisfy { $0.isChecked }
+        return DisplayState(segmentId: seg.id,
+                            title: seg.title,
+                            items: segItems,
+                            notes: seg.notes,
+                            focusedIndex: focus,
+                            isComplete: complete,
+                            segmentIndex: current,
+                            segmentCount: store.segments.count)
     }
 }

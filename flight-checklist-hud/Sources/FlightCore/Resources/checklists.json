@@ -1,107 +1,217 @@
 [
   {
-    "phase": "preflight",
+    "id": "before_start",
     "title": "Before Start",
+    "autoPhases": ["preflight"],
+    "notes": [
+      "Crew brief: seats/belts, headsets, lights, vents, doors & windows, escape, fire extinguisher, PIC, flight plan, sterile cockpit (critical phases of flight), 3-way + transfer of controls."
+    ],
     "items": [
-      { "id": "pf-1", "challenge": "Preflight inspection", "response": "COMPLETE", "isChecked": false },
-      { "id": "pf-2", "challenge": "Seats, belts", "response": "ADJUST / SECURE", "isChecked": false },
-      { "id": "pf-3", "challenge": "Fuel selector", "response": "BOTH", "isChecked": false },
-      { "id": "pf-4", "challenge": "Avionics", "response": "OFF", "isChecked": false }
+      { "id": "bs-1", "challenge": "Parking brake", "response": "SET" },
+      { "id": "bs-2", "challenge": "Preflight inspection", "response": "COMPLETED" },
+      { "id": "bs-3", "challenge": "Flight circle dispatch", "response": "COMPLETED" },
+      { "id": "bs-4", "challenge": "Passenger / crew brief", "response": "COMPLETED" },
+      { "id": "bs-5", "challenge": "Seats & seatbelts", "response": "UPRIGHT-LOCKED & SET" },
+      { "id": "bs-6", "challenge": "Fuel selector", "response": "BOTH" },
+      { "id": "bs-7", "challenge": "Circuit breakers", "response": "IN" },
+      { "id": "bs-8", "challenge": "Electrical switches (except beacon)", "response": "OFF" },
+      { "id": "bs-9", "challenge": "Avionics switch", "response": "OFF" },
+      { "id": "bs-10", "challenge": "Sun shade", "response": "REMOVED & STOWED" }
     ]
   },
   {
-    "phase": "taxiOut",
-    "title": "Taxi",
+    "id": "engine_start",
+    "title": "Engine Start",
+    "autoPhases": [],
+    "notes": [
+      "Cold start: throttle open 1/8 inch; fuel primer 2-6 strokes & locked (none if warm).",
+      "Flooded start: throttle HALF FULL (be ready to reduce on start); as engine starts advance mixture to 2/3 then full rich; a throttle bump may help.",
+      "Ignition: 10 s max crank, 20 s cooldown between attempts."
+    ],
     "items": [
-      { "id": "tx-1", "challenge": "Brakes", "response": "CHECK", "isChecked": false },
-      { "id": "tx-2", "challenge": "Flight instruments", "response": "CHECK", "isChecked": false }
+      { "id": "es-1", "challenge": "Master switch", "response": "ON" },
+      { "id": "es-2", "challenge": "Mixture", "response": "RICH" },
+      { "id": "es-3", "challenge": "Carb heat", "response": "COLD – IN & OFF" },
+      { "id": "es-4", "challenge": "Throttle", "response": "OPEN 1/8 INCH" },
+      { "id": "es-5", "challenge": "Fuel primer", "response": "2-6 STROKES & LOCKED" },
+      { "id": "es-6", "challenge": "Flaps", "response": "UP & CONFIRMED" },
+      { "id": "es-7", "challenge": "Prop & blast area", "response": "CLEAR" },
+      { "id": "es-8", "challenge": "Brakes", "response": "HOLD" },
+      { "id": "es-9", "challenge": "Ignition", "response": "START" },
+      { "id": "es-10", "challenge": "Throttle", "response": "1200 RPM" },
+      { "id": "es-11", "challenge": "Oil pressure", "response": "CHECKED (green within 30s)" },
+      { "id": "es-12", "challenge": "Amps", "response": "CHECKED (positive charge)" },
+      { "id": "es-13", "challenge": "Low volts & CO annunciators", "response": "CHECKED (none shown)" },
+      { "id": "es-14", "challenge": "Mixture", "response": "LEAN FOR PEAK RPM / TAXI" },
+      { "id": "es-15", "challenge": "Throttle", "response": "1000-1200 RPM" }
     ]
   },
   {
-    "phase": "takeoff",
+    "id": "after_start",
+    "title": "After Start",
+    "autoPhases": [],
+    "notes": [
+      "Instrument & systems: mag compass, clock, ASI, TAS, attitude, altimeter, rate of turn, slip/skid, DG slaved or matching, VSI, VOR & CDI, GPS status, carbon monoxide."
+    ],
+    "items": [
+      { "id": "as-1", "challenge": "Avionics switch", "response": "ON" },
+      { "id": "as-2", "challenge": "Headsets", "response": "CHECKED & SET" },
+      { "id": "as-3", "challenge": "Interior lights & avionics brightness", "response": "SET" },
+      { "id": "as-4", "challenge": "GPSMAP 696", "response": "SET (databases / TOS accepted)" },
+      { "id": "as-5", "challenge": "AV-30-Cs", "response": "INITIALIZED" },
+      { "id": "as-6", "challenge": "ATIS-AWOS-ASOS / clearance", "response": "AS REQUIRED OR DEFERRED" },
+      { "id": "as-7", "challenge": "Comms / navs", "response": "SET" },
+      { "id": "as-8", "challenge": "Altimeter settings (incl AV-30-C)", "response": "SET" },
+      { "id": "as-9", "challenge": "XPDR", "response": "SET & ON ALT" },
+      { "id": "as-10", "challenge": "Flight instruments", "response": "NO RED FLAGS" },
+      { "id": "as-11", "challenge": "Flight plan & GPS", "response": "CONFIGURED OR DEFERRED" },
+      { "id": "as-12", "challenge": "Instrument & systems check", "response": "COMPLETED OR DEFERRED" }
+    ]
+  },
+  {
+    "id": "before_taxi",
+    "title": "Before Taxi",
+    "autoPhases": ["taxiOut"],
+    "notes": [
+      "Taxi & brake symmetry: slip/skid opposite, attitude level, rate of turn same, DG & mag compass rotating.",
+      "Taxi lights off when stopped and while yielding to traffic at night. Use appropriate wind correction inputs at all times."
+    ],
+    "items": [
+      { "id": "bt-1", "challenge": "Parking brake", "response": "RELEASED" },
+      { "id": "bt-2", "challenge": "Lights", "response": "SET (taxi light on)" },
+      { "id": "bt-3", "challenge": "Brake check", "response": "COMPLETED" },
+      { "id": "bt-4", "challenge": "Airport diagram", "response": "SET & BRIEFED" },
+      { "id": "bt-5", "challenge": "Taxi clearance / advisory", "response": "OBTAINED / COMPLETED" },
+      { "id": "bt-6", "challenge": "Instrument taxi & brake symmetry check", "response": "COMPLETE" }
+    ]
+  },
+  {
+    "id": "run_up",
+    "title": "Run Up",
+    "autoPhases": [],
+    "items": [
+      { "id": "ru-1", "challenge": "Parking brake (nose wheel centered, taxi light off)", "response": "SET" },
+      { "id": "ru-2", "challenge": "Flight controls", "response": "BOX CHECK & FREE" },
+      { "id": "ru-3", "challenge": "Fuel selector", "response": "BOTH" },
+      { "id": "ru-4", "challenge": "Windows", "response": "CLOSED FOR RUN-UP" },
+      { "id": "ru-5", "challenge": "Mixture", "response": "RICH" },
+      { "id": "ru-6", "challenge": "Throttle (full above 3000' MSL)", "response": "1700 RPM" },
+      { "id": "ru-7", "challenge": "Mixture (rich <3000', lean for peak above)", "response": "SET" },
+      { "id": "ru-8", "challenge": "Magnetos (max 125 drop / 50 between)", "response": "CHECK" },
+      { "id": "ru-9", "challenge": "Carb heat (on / check for RPM drop)", "response": "CHECK" },
+      { "id": "ru-10", "challenge": "Engine instruments (green / fuel qty)", "response": "TESTED & OK" },
+      { "id": "ru-11", "challenge": "Volts & amps / alternator (no light / no discharge)", "response": "CHECKED" },
+      { "id": "ru-12", "challenge": "Idle (stable at min RPM)", "response": "CHECKED" },
+      { "id": "ru-13", "challenge": "Throttle", "response": "1000-1200 RPM" },
+      { "id": "ru-14", "challenge": "Mixture", "response": "LEANED FOR PEAK RPM / TAXI" }
+    ]
+  },
+  {
+    "id": "before_takeoff",
     "title": "Before Takeoff",
+    "autoPhases": ["takeoff"],
+    "notes": [
+      "Takeoff briefing: PIC, aborted takeoff, loss of power in phases of climb, type takeoff, initial heading & altitude.",
+      "Final items before entering runway: map range set, lights on, final clear, mixture set, timer on, runway verify."
+    ],
     "items": [
-      { "id": "to-1", "challenge": "Flaps", "response": "SET FOR TAKEOFF", "isChecked": false },
-      { "id": "to-2", "challenge": "Trim", "response": "SET", "isChecked": false },
-      { "id": "to-3", "challenge": "Engine instruments", "response": "GREEN", "isChecked": false },
-      { "id": "to-4", "challenge": "Transponder", "response": "ALT", "isChecked": false }
+      { "id": "bto-1", "challenge": "ATIS-AWOS-ASOS / clearance", "response": "UPDATED / OBTAINED" },
+      { "id": "bto-2", "challenge": "Flight plan & GPS", "response": "CONTINUED & CONFIGURED" },
+      { "id": "bto-3", "challenge": "Instrument & systems check", "response": "CONTINUED & COMPLETED" },
+      { "id": "bto-4", "challenge": "Comms / navs (guard 121.5)", "response": "SET" },
+      { "id": "bto-5", "challenge": "Altimeter settings (incl AV-30-C)", "response": "SET" },
+      { "id": "bto-6", "challenge": "HDG bug / OBS", "response": "SET" },
+      { "id": "bto-7", "challenge": "XPDR", "response": "SET & ON ALT" },
+      { "id": "bto-8", "challenge": "Takeoff briefing", "response": "COMPLETE" },
+      { "id": "bto-9", "challenge": "Elevator & rudder trim", "response": "SET FOR TAKEOFF" },
+      { "id": "bto-10", "challenge": "Flaps", "response": "SET & CONFIRMED" },
+      { "id": "bto-11", "challenge": "Doors & windows", "response": "LATCHED PRIOR TO TAKEOFF" },
+      { "id": "bto-12", "challenge": "Parking brake", "response": "REMOVED" }
     ]
   },
   {
-    "phase": "afterTakeoff",
-    "title": "After Takeoff",
-    "items": [
-      { "id": "at-1", "challenge": "Airspeed", "response": "Vy / POSITIVE RATE", "isChecked": false },
-      { "id": "at-2", "challenge": "Landing gear", "response": "UP", "isChecked": false },
-      { "id": "at-3", "challenge": "Flaps", "response": "UP", "isChecked": false },
-      { "id": "at-4", "challenge": "Climb power", "response": "SET", "isChecked": false },
-      { "id": "at-5", "challenge": "Landing/taxi lights", "response": "AS REQUIRED", "isChecked": false }
-    ]
-  },
-  {
-    "phase": "climb",
+    "id": "climb",
     "title": "Climb",
+    "autoPhases": ["afterTakeoff", "climb"],
     "items": [
-      { "id": "cl-1", "challenge": "Power", "response": "CLIMB SET", "isChecked": false },
-      { "id": "cl-2", "challenge": "Mixture", "response": "ADJUST", "isChecked": false },
-      { "id": "cl-3", "challenge": "Engine instruments", "response": "MONITOR", "isChecked": false }
+      { "id": "cl-1", "challenge": "Flaps", "response": "ZERO & CONFIRMED" },
+      { "id": "cl-2", "challenge": "Throttle", "response": "FULL" },
+      { "id": "cl-3", "challenge": "Mixture (peak RPM or 50° ROP >3000', every 1000')", "response": "SET" },
+      { "id": "cl-4", "challenge": "Lights / carb heat / pitot heat & defrost", "response": "CHECKED & SET" },
+      { "id": "cl-5", "challenge": "CBs / flight & engine instruments (incl CO)", "response": "CHECKED" }
     ]
   },
   {
-    "phase": "cruise",
-    "title": "Cruise",
+    "id": "cruise",
+    "title": "Cruise / Pre-Maneuver",
+    "autoPhases": ["cruise"],
+    "notes": [
+      "Pre-maneuver: fuel qty check, fuel for both maneuvers, map range set, area clear, bugs set."
+    ],
     "items": [
-      { "id": "cr-1", "challenge": "Power", "response": "CRUISE SET", "isChecked": false },
-      { "id": "cr-2", "challenge": "Mixture", "response": "LEAN", "isChecked": false },
-      { "id": "cr-3", "challenge": "Engine instruments", "response": "MONITOR", "isChecked": false },
-      { "id": "cr-4", "challenge": "Fuel", "response": "CHECK / BALANCE", "isChecked": false }
+      { "id": "cr-1", "challenge": "Power / airspeed / trim (green 2100-2500 RPM)", "response": "SET" },
+      { "id": "cr-2", "challenge": "Mixture (50° ROP / rich <3000' MSL)", "response": "SET" },
+      { "id": "cr-3", "challenge": "Lights / carb heat / pitot heat & defrost", "response": "SET" },
+      { "id": "cr-4", "challenge": "CBs / flight & engine instruments (set TAS / CO)", "response": "CHECKED & SET" },
+      { "id": "cr-5", "challenge": "Flight plan", "response": "SET & BRIEFED" }
     ]
   },
   {
-    "phase": "descent",
-    "title": "Descent",
+    "id": "in_range",
+    "title": "In Range / Descent / Landing",
+    "autoPhases": ["descent", "approach", "landing"],
+    "notes": [
+      "Final items before landing – FAF or abeam (GUMPS+): Brakes – doesn't roll to floor; Carb heat – on; Flaps; Gas – fuel selector BOTH; Undercarriage – undamaged; Mixture – set; Switches – flaps set."
+    ],
     "items": [
-      { "id": "ds-1", "challenge": "Altimeter", "response": "SET", "isChecked": false },
-      { "id": "ds-2", "challenge": "Mixture", "response": "ENRICH AS REQUIRED", "isChecked": false },
-      { "id": "ds-3", "challenge": "Landing brief", "response": "COMPLETE", "isChecked": false }
+      { "id": "ir-1", "challenge": "ATIS-AWOS-ASOS / ATC requests", "response": "OBTAINED" },
+      { "id": "ir-2", "challenge": "Altimeter settings (incl AV-30-C)", "response": "SET" },
+      { "id": "ir-3", "challenge": "GPS / descent & approach procedures", "response": "SET & BRIEFED" },
+      { "id": "ir-4", "challenge": "Comms / navs", "response": "SET & IDENTIFIED" },
+      { "id": "ir-5", "challenge": "HDG bug / OBS / timer", "response": "SET & READY" },
+      { "id": "ir-6", "challenge": "XPDR", "response": "SET & ON ALT" },
+      { "id": "ir-7", "challenge": "Fuel selector", "response": "BOTH FOR LANDING" },
+      { "id": "ir-8", "challenge": "Mixture (enrich every 1000' descended)", "response": "SET" },
+      { "id": "ir-9", "challenge": "Carb heat", "response": "PULL OUT – ON BEFORE DESCENTS" },
+      { "id": "ir-10", "challenge": "Lights / pitot heat & defrost", "response": "CHECKED & SET" },
+      { "id": "ir-11", "challenge": "CBs / flight & engine instruments (incl CO)", "response": "CHECKED" },
+      { "id": "ir-12", "challenge": "Seats & seatbelts", "response": "UPRIGHT-LOCKED & ON" },
+      { "id": "ir-13", "challenge": "Rudder trim", "response": "SET NEUTRAL FOR LANDING" }
     ]
   },
   {
-    "phase": "approach",
-    "title": "Before Landing",
-    "items": [
-      { "id": "ap-1", "challenge": "Fuel selector", "response": "BOTH / FULLEST", "isChecked": false },
-      { "id": "ap-2", "challenge": "Mixture", "response": "RICH", "isChecked": false },
-      { "id": "ap-3", "challenge": "Landing gear", "response": "DOWN", "isChecked": false },
-      { "id": "ap-4", "challenge": "Flaps", "response": "AS REQUIRED", "isChecked": false },
-      { "id": "ap-5", "challenge": "Landing light", "response": "ON", "isChecked": false }
-    ]
-  },
-  {
-    "phase": "landing",
-    "title": "Landing",
-    "items": [
-      { "id": "ld-1", "challenge": "Touchdown", "response": "MAINS FIRST", "isChecked": false },
-      { "id": "ld-2", "challenge": "Brakes", "response": "AS REQUIRED", "isChecked": false }
-    ]
-  },
-  {
-    "phase": "taxiIn",
+    "id": "after_landing",
     "title": "After Landing",
+    "autoPhases": ["taxiIn"],
     "items": [
-      { "id": "ti-1", "challenge": "Flaps", "response": "UP", "isChecked": false },
-      { "id": "ti-2", "challenge": "Transponder", "response": "STBY", "isChecked": false },
-      { "id": "ti-3", "challenge": "Landing/strobe lights", "response": "AS REQUIRED", "isChecked": false }
+      { "id": "al-1", "challenge": "Lights / pitot heat", "response": "SET / OFF" },
+      { "id": "al-2", "challenge": "Comms", "response": "SET" },
+      { "id": "al-3", "challenge": "Carb heat", "response": "COLD – IN & OFF" },
+      { "id": "al-4", "challenge": "Throttle", "response": "1000-1200 RPM" },
+      { "id": "al-5", "challenge": "Mixture", "response": "LEANED FOR PEAK RPM / TAXI" },
+      { "id": "al-6", "challenge": "Flaps", "response": "ZERO & CONFIRMED" },
+      { "id": "al-7", "challenge": "Elevator & rudder trim", "response": "SET FOR TAKEOFF" },
+      { "id": "al-8", "challenge": "Taxi clearance / advisory", "response": "COMPLETE" }
     ]
   },
   {
-    "phase": "shutdown",
+    "id": "shutdown",
     "title": "Shutdown",
+    "autoPhases": ["shutdown"],
     "items": [
-      { "id": "sd-1", "challenge": "Avionics", "response": "OFF", "isChecked": false },
-      { "id": "sd-2", "challenge": "Mixture", "response": "IDLE CUTOFF", "isChecked": false },
-      { "id": "sd-3", "challenge": "Magnetos", "response": "OFF", "isChecked": false },
-      { "id": "sd-4", "challenge": "Master", "response": "OFF", "isChecked": false }
+      { "id": "sd-1", "challenge": "Parking brake", "response": "SET" },
+      { "id": "sd-2", "challenge": "Throttle", "response": "IDLE" },
+      { "id": "sd-3", "challenge": "Avionics switch (headsets off)", "response": "OFF" },
+      { "id": "sd-4", "challenge": "Magnetos ground (off then back to both)", "response": "VERIFY GROUNDING" },
+      { "id": "sd-5", "challenge": "Throttle", "response": "1200 RPM" },
+      { "id": "sd-6", "challenge": "Mixture", "response": "TWIST TO IDLE CUTOFF" },
+      { "id": "sd-7", "challenge": "Ignition switch (keys visible on dash)", "response": "OFF" },
+      { "id": "sd-8", "challenge": "Electrical switches (except beacon)", "response": "OFF" },
+      { "id": "sd-9", "challenge": "Master switch", "response": "OFF" },
+      { "id": "sd-10", "challenge": "Hobbs & tach meters", "response": "NOTED" },
+      { "id": "sd-11", "challenge": "Fuel selector", "response": "LEFT OR RIGHT" },
+      { "id": "sd-12", "challenge": "Control wheel lock", "response": "INSTALLED" },
+      { "id": "sd-13", "challenge": "Parking brake (if moving on flat ground)", "response": "REMOVED" }
     ]
   }
 ]

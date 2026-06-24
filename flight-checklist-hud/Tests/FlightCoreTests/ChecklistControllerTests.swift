@@ -4,76 +4,103 @@ import XCTest
 final class ChecklistControllerTests: XCTestCase {
 
     private func makeStore() -> ChecklistStore {
-        ChecklistStore(checklists: [
-            Checklist(phase: .afterTakeoff, title: "After Takeoff", items: [
-                ChecklistItem(id: "1", challenge: "Gear", response: "UP"),
-                ChecklistItem(id: "2", challenge: "Flaps", response: "UP"),
-                ChecklistItem(id: "3", challenge: "Power", response: "CLIMB")
+        ChecklistStore(segments: [
+            ChecklistSegment(id: "ground", title: "Ground", autoPhases: [.preflight], items: [
+                ChecklistItem(id: "a", challenge: "Brake", response: "SET"),
+                ChecklistItem(id: "b", challenge: "Master", response: "ON")
             ]),
-            Checklist(phase: .cruise, title: "Cruise", items: [
-                ChecklistItem(id: "c1", challenge: "Mixture", response: "LEAN")
+            ChecklistSegment(id: "manual", title: "Run Up", autoPhases: [], items: [
+                ChecklistItem(id: "m", challenge: "Mags", response: "CHECK")
+            ]),
+            ChecklistSegment(id: "climb", title: "Climb", autoPhases: [.afterTakeoff, .climb], items: [
+                ChecklistItem(id: "c1", challenge: "Flaps", response: "UP"),
+                ChecklistItem(id: "c2", challenge: "Power", response: "CLIMB")
+            ]),
+            ChecklistSegment(id: "cruise", title: "Cruise", autoPhases: [.cruise], items: [
+                ChecklistItem(id: "d", challenge: "Mixture", response: "LEAN")
             ])
         ])
     }
 
-    func testBundledSamplesLoad() throws {
-        let store = try ChecklistStore.bundledSamples()
-        let list = try XCTUnwrap(store.checklist(for: .afterTakeoff))
-        XCTAssertEqual(list.title, "After Takeoff")
-        XCTAssertFalse(list.items.isEmpty)
+    func testBundledCessnaChecklistLoads() throws {
+        let store = try ChecklistStore.bundled()
+        XCTAssertEqual(store.segments.count, 11)
+        XCTAssertEqual(store.segments.first?.id, "before_start")
+        // After-takeoff telemetry maps to the Climb segment.
+        let climbIdx = try XCTUnwrap(store.segmentIndex(for: .afterTakeoff))
+        XCTAssertEqual(store.segments[climbIdx].title, "Climb")
+        XCTAssertEqual(store.segmentIndex(for: .preflight).map { store.segments[$0].id }, "before_start")
+        XCTAssertEqual(store.segmentIndex(for: .shutdown).map { store.segments[$0].id }, "shutdown")
+
+        // Ground-only segments have no auto phase: no detected phase reaches them.
+        let autoReachable = Set(FlightPhase.allCases.compactMap { store.segmentIndex(for: $0) })
+        for groundOnly in ["engine_start", "after_start", "run_up"] {
+            let idx = try XCTUnwrap(store.segments.firstIndex { $0.id == groundOnly })
+            XCTAssertFalse(autoReachable.contains(idx), "\(groundOnly) must be manual-only")
+        }
     }
 
-    func testAdvanceChecksAndMovesFocus() {
-        let controller = ChecklistController(store: makeStore(), initialPhase: .afterTakeoff)
-        XCTAssertEqual(controller.state.focusedIndex, 0)
+    func testAdvanceChecksAndRollsIntoNextSegment() {
+        let c = ChecklistController(store: makeStore())
+        XCTAssertEqual(c.state.segmentId, "ground")
+        XCTAssertEqual(c.state.focusedIndex, 0)
 
-        controller.advance()
-        XCTAssertTrue(controller.state.items[0].isChecked)
-        XCTAssertEqual(controller.state.focusedIndex, 1)
+        c.advance()                       // checks "a", focus -> 1
+        XCTAssertTrue(c.state.items[0].isChecked)
+        XCTAssertEqual(c.state.focusedIndex, 1)
 
-        controller.advance()
-        controller.advance()
-        XCTAssertNil(controller.state.focusedIndex, "focus clears after last item")
-        XCTAssertTrue(controller.state.isComplete)
+        c.advance()                       // checks "b" (last) -> roll to next segment
+        XCTAssertEqual(c.state.segmentId, "manual")
+        XCTAssertEqual(c.state.segmentIndex, 1)
+        XCTAssertEqual(c.state.focusedIndex, 0)
     }
 
-    func testSetPhaseSwitchesChecklistAndResetsProgress() {
-        let controller = ChecklistController(store: makeStore(), initialPhase: .afterTakeoff)
-        controller.advance()
-        controller.setPhase(.cruise)
-        XCTAssertEqual(controller.state.phase, .cruise)
-        XCTAssertEqual(controller.state.title, "Cruise")
-        XCTAssertEqual(controller.state.focusedIndex, 0)
-        XCTAssertFalse(controller.state.items[0].isChecked)
+    func testSetPhaseIsForwardOnly() {
+        let c = ChecklistController(store: makeStore())
+        c.setPhase(.cruise)               // jump straight to cruise (index 3)
+        XCTAssertEqual(c.state.segmentId, "cruise")
+
+        c.setPhase(.afterTakeoff)         // maps to climb (index 2) < 3 -> ignored
+        XCTAssertEqual(c.state.segmentId, "cruise")
+
+        c.setPhase(.preflight)            // maps to ground (index 0) < 3 -> ignored
+        XCTAssertEqual(c.state.segmentId, "cruise")
     }
 
-    func testSetSamePhaseIsNoOpAndPreservesProgress() {
-        let controller = ChecklistController(store: makeStore(), initialPhase: .afterTakeoff)
-        controller.advance()
-        controller.setPhase(.afterTakeoff) // same phase
-        XCTAssertTrue(controller.state.items[0].isChecked, "progress preserved")
-        XCTAssertEqual(controller.state.focusedIndex, 1)
+    func testManualSegmentNavigation() {
+        let c = ChecklistController(store: makeStore())
+        c.nextSegment()
+        XCTAssertEqual(c.state.segmentId, "manual")
+        c.nextSegment()
+        XCTAssertEqual(c.state.segmentId, "climb")
+        c.prevSegment()
+        XCTAssertEqual(c.state.segmentId, "manual")
+    }
+
+    func testCheckStatePersistsAcrossSwitches() {
+        let c = ChecklistController(store: makeStore())
+        c.toggle()                        // check "a" in ground
+        c.nextSegment()                   // -> manual
+        c.prevSegment()                   // back to ground
+        XCTAssertTrue(c.state.items[0].isChecked, "progress preserved on return")
+        XCTAssertEqual(c.state.focusedIndex, 1, "focus skips the already-checked item")
     }
 
     func testToggleAndReset() {
-        let controller = ChecklistController(store: makeStore(), initialPhase: .afterTakeoff)
-        controller.toggle()
-        XCTAssertTrue(controller.state.items[0].isChecked)
-        controller.toggle()
-        XCTAssertFalse(controller.state.items[0].isChecked)
-
-        controller.advance()
-        controller.reset()
-        XCTAssertEqual(controller.state.focusedIndex, 0)
-        XCTAssertFalse(controller.state.items.contains { $0.isChecked })
+        let c = ChecklistController(store: makeStore())
+        c.toggle()
+        XCTAssertTrue(c.state.items[0].isChecked)
+        c.reset()
+        XCTAssertFalse(c.state.items.contains { $0.isChecked })
+        XCTAssertEqual(c.state.focusedIndex, 0)
     }
 
-    func testUpdateCallbackFires() {
-        let controller = ChecklistController(store: makeStore(), initialPhase: .afterTakeoff)
+    func testDisplayUpdateCallbackFires() {
+        let c = ChecklistController(store: makeStore())
         var updates = 0
-        controller.onDisplayUpdate = { _ in updates += 1 }
-        controller.advance()
-        controller.setPhase(.cruise)
+        c.onDisplayUpdate = { _ in updates += 1 }
+        c.advance()
+        c.setPhase(.cruise)
         XCTAssertEqual(updates, 2)
     }
 }

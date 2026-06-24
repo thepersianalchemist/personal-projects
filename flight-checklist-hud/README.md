@@ -40,10 +40,35 @@ unit-testable on the ground without glasses or an aircraft.
 |------|-------|----------------|
 | GDL90 | `CRC16CCITT`, `GDL90Framing`, `GDL90Decoder` | De-frame UDP bytes, validate CRC, decode ownship position/velocity & geometric altitude |
 | Phase | `OwnshipSample`, `GDL90SampleAssembler`, `FlightPhase`, `PhaseDetector` | Normalize fixes and run the phase state machine (with hysteresis + AGL auto-zero) |
-| Checklist | `Checklist`, `ChecklistStore`, `ChecklistController` | Editable JSON checklists; map phase → checklist; expose a `DisplayState` for the UI; handle gestures |
+| Checklist | `Checklist` (segment model), `ChecklistStore`, `ChecklistController` | Ordered named checklists; auto-switch by phase or manual tap-through; expose a `DisplayState`; handle gestures |
 
-Checklists live in `Sources/FlightCore/Resources/checklists.json` — **edit these
-to match your aircraft's POH**. The seeded content is a generic light-GA sample.
+Checklists live in `Sources/FlightCore/Resources/checklists.json` — currently the
+real **Project A.C.E.S. Cessna 172P (AV-30-C / GPSMAP 696)** normal checklist,
+transcribed from the card. Edit this file to match your own aircraft's POH.
+
+### Auto vs. manual segments
+
+The card has 11 named checklists, but several ground flows — **Engine Start**,
+**After Start**, **Run Up** — happen at a standstill and are indistinguishable
+from telemetry. So the model is **hybrid**:
+
+- Each `ChecklistSegment` lists the `FlightPhase`s that auto-switch to it
+  (`autoPhases`). Auto-switching is **forward-only** so a momentary stop never
+  drags the HUD backward.
+- Ground-only segments have empty `autoPhases` and are reached by **Neural Band
+  tap-through** (`nextSegment()` / `prevSegment()`).
+
+| Segment | Trigger |
+|---------|---------|
+| Before Start | auto: `preflight` |
+| Engine Start, After Start, Run Up | manual tap |
+| Before Taxi | auto: `taxiOut` |
+| Before Takeoff | auto: `takeoff` |
+| Climb | auto: `afterTakeoff`, `climb` |
+| Cruise / Pre-Maneuver | auto: `cruise` |
+| In Range / Descent / Landing | auto: `descent`, `approach`, `landing` |
+| After Landing | auto: `taxiIn` |
+| Shutdown | auto: `shutdown` |
 
 ## Running the tests
 
@@ -68,6 +93,7 @@ vertical speed, dwell time). Defaults suit light GA; adjust per aircraft.
    joins the receiver's WiFi and feeds bytes to `GDL90Deframer`.
 2. **Meta Wearables Device Access Toolkit (Swift)** — render `DisplayState` on
    the right-lens display; map **Neural Band** gesture events to
-   `controller.advance()` / `back()` / `toggle()`.
+   `controller.advance()` / `back()` / `toggle()` (items) and
+   `nextSegment()` / `prevSegment()` (tap-through the ground checklists).
 3. **Replay harness** — record real GDL90 datagrams to a file and replay them
    through `FlightCore` to validate phase detection against actual flights.
