@@ -41,6 +41,7 @@ unit-testable on the ground without glasses or an aircraft.
 | GDL90 | `CRC16CCITT`, `GDL90Framing`, `GDL90Decoder` | De-frame UDP bytes, validate CRC, decode ownship position/velocity & geometric altitude |
 | Phase | `OwnshipSample`, `GDL90SampleAssembler`, `FlightPhase`, `PhaseDetector` | Normalize fixes and run the phase state machine (with hysteresis + AGL auto-zero) |
 | Checklist | `Checklist` (segment model), `ChecklistStore`, `ChecklistController` | Ordered named checklists; auto-switch by phase or manual tap-through; expose a `DisplayState`; handle gestures |
+| Session | `FlightSession`, `GlassesRenderer`/`DisplayFormatter`, `SentryUDPListener` | Wire the pipeline end-to-end; format the HUD; receive Sentry's UDP broadcast |
 
 Checklists live in `Sources/FlightCore/Resources/checklists.json` — currently the
 real **Project A.C.E.S. Cessna 172P (AV-30-C / GPSMAP 696)** normal checklist,
@@ -78,22 +79,54 @@ swift test
 ```
 
 Covers: GDL90 bit-decoding against hand-computed values, byte-stuffing & CRC,
-a replayed synthetic full flight through every phase, hysteresis, and the
-checklist controller. (Tests were authored in an environment without a Swift
-toolchain — run `swift test` locally to confirm.)
+a replayed synthetic full flight through every phase, hysteresis, the checklist
+controller, and an end-to-end `FlightSession` driven by framed GDL90 datagrams.
+(Tests were authored in an environment without a Swift toolchain — run
+`swift test` locally to confirm. `SentryUDPListener` is `#if canImport(Network)`
+so it compiles out on Linux and the suite still runs.)
 
 ## Tuning
 
 `PhaseConfig` exposes all thresholds (taxi/rotate speed, AGL, climb/descent
 vertical speed, dwell time). Defaults suit light GA; adjust per aircraft.
 
-## Next steps (iOS + glasses layer — not in this core package)
+## Wiring it up (Sentry → iOS → glasses)
 
-1. **UDP listener** — an iOS `Network.framework` `NWConnection`/listener that
-   joins the receiver's WiFi and feeds bytes to `GDL90Deframer`.
-2. **Meta Wearables Device Access Toolkit (Swift)** — render `DisplayState` on
-   the right-lens display; map **Neural Band** gesture events to
-   `controller.advance()` / `back()` / `toggle()` (items) and
-   `nextSegment()` / `prevSegment()` (tap-through the ground checklists).
-3. **Replay harness** — record real GDL90 datagrams to a file and replay them
-   through `FlightCore` to validate phase detection against actual flights.
+```swift
+let session = FlightSession(store: try ChecklistStore.bundled())
+session.onDisplayUpdate = { state in glasses.render(state) }   // your Meta renderer
+
+let listener = SentryUDPListener { datagram in
+    session.ingest(datagram: datagram)
+}
+try listener?.start()
+
+// Neural Band gestures:
+//   single tap → session.advance()      (check item, move on)
+//   swipe back → session.back()
+//   two-finger → session.nextSegment()  (tap through ground checklists)
+```
+
+### Sentry specifics
+- Connect the iPhone to the **Sentry's WiFi** (same network ForeFlight uses).
+- Sentry broadcasts GDL90 on **UDP port 4000**. `SentryUDPListener` sets
+  `allowLocalEndpointReuse` so it can share :4000 with ForeFlight — **verify in
+  flight** that both receive data; if not, the broadcast/unicast behavior may
+  need adjusting.
+- Sentry also sends extended messages (IDs 37/38: CO, pressure, AHRS) and the
+  ForeFlight ID/AHRS message — the decoder safely ignores these; phase detection
+  only needs ownship (10) and geometric altitude (11).
+- **iOS Local Network permission** is required to receive LAN UDP. Add to
+  `Info.plist`:
+  ```xml
+  <key>NSLocalNetworkUsageDescription</key>
+  <string>Receives flight data from your Sentry to drive the checklist.</string>
+  ```
+
+## Next steps (not in this core package)
+
+1. **Meta Wearables Device Access Toolkit (Swift)** — implement `GlassesRenderer`
+   to draw `DisplayFormatter.text(state)` on the right lens and bind Neural Band
+   gestures to the `FlightSession` methods above.
+2. **Replay harness** — record real GDL90 datagrams to a file and replay them
+   through `FlightSession` to validate phase detection against actual flights.
