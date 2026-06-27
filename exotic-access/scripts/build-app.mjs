@@ -26,8 +26,18 @@ const result = await build({
 });
 const engine = result.outputFiles[0].text.replace(/export\s*\{[^}]*\}\s*;?/g, "");
 
-// 2) Inventory — mirrors prisma/seed.ts (houses, vehicles, listings, rules).
-const INVENTORY = [
+// 2) Inventory — prefer the scraped/normalized supply (data/inventory.json);
+//    fall back to the small inline seed if it hasn't been generated yet.
+let INVENTORY;
+try {
+  INVENTORY = JSON.parse(readFileSync(join(root, "data", "inventory.json"), "utf8"));
+  console.log("Loaded scraped inventory: " + INVENTORY.length + " vehicles");
+} catch {
+  INVENTORY = INLINE_SEED;
+  console.log("Using inline seed (run normalize-supply first for full supply)");
+}
+
+const INLINE_SEED = [
   { id: "huracan", make: "Lamborghini", model: "Huracán", trim: "EVO Spyder", year: 2023, category: "CONVERTIBLE", market: "MIA", marketName: "Miami", house: "Velocity Collection", elite: true, instantBook: true, rating: 4.9, ratingCount: 214, base: 2400, deposit: 5000, deliveryFee: 250, includedMiles: 100, minDays: 1, minAge: 25, hp: 631, zeroSixty: 3.1, seats: 2, houseMultiplier: 1.05, serviceFeePct: 0.15, rules: [{ id: "w", type: "DAY_OF_WEEK", priority: 1, active: true, adjustment: 1.15 }, { id: "wk", type: "LENGTH_OF_RENTAL", priority: 1, active: true, adjustment: 0.9, minDays: 7 }], image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=1200" },
   { id: "sf90", make: "Ferrari", model: "SF90 Stradale", trim: "", year: 2023, category: "SUPERCAR", market: "MIA", marketName: "Miami", house: "Velocity Collection", elite: true, instantBook: true, rating: 4.9, ratingCount: 214, base: 4200, deposit: 10000, deliveryFee: 350, includedMiles: 100, minDays: 1, minAge: 25, hp: 986, zeroSixty: 2.5, seats: 2, houseMultiplier: 1.05, serviceFeePct: 0.15, rules: [{ id: "w", type: "DAY_OF_WEEK", priority: 1, active: true, adjustment: 1.15 }, { id: "wk", type: "LENGTH_OF_RENTAL", priority: 1, active: true, adjustment: 0.9, minDays: 7 }], image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=1200" },
   { id: "cullinan", make: "Rolls-Royce", model: "Cullinan", trim: "Black Badge", year: 2023, category: "LUXURY_SUV", market: "LAX", marketName: "Los Angeles", house: "Sunset Prestige", elite: true, instantBook: true, rating: 4.8, ratingCount: 131, base: 2100, deposit: 7500, deliveryFee: 200, includedMiles: 100, minDays: 1, minAge: 25, hp: 591, zeroSixty: 4.9, seats: 5, houseMultiplier: 1.0, serviceFeePct: 0.15, rules: [], image: "https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=1200" },
@@ -65,7 +75,8 @@ const css = `
 .quoteline{font-size:12px;color:var(--muted);margin-top:8px}.quoteline b{color:var(--text)}
 .badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
 .badge{font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
-.badge.elite{border-color:var(--accent);color:var(--accent)}.badge.deal{border-color:var(--accent-2);color:#ff6b81}
+.badge.elite{border-color:var(--accent);color:var(--accent)}.badge.deal{border-color:var(--accent-2);color:#ff6b81}.badge.ver{border-color:#244a30;color:#8fd19e}
+.src{color:#8fd19e;font-size:12px}.count{color:var(--muted);font-size:13px;padding:14px 0 0}
 .detail{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;padding:24px 0 60px}
 .back{display:inline-block;margin:18px 0 0;color:var(--muted);cursor:pointer;font-size:14px}
 .specs{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin:16px 0}

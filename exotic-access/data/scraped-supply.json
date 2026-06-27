@@ -1,0 +1,5430 @@
+{
+  "meta": {
+    "generatedFrom": [
+      "midwest.json",
+      "northeast.json",
+      "southeast.json",
+      "southwest.json",
+      "texas.json",
+      "west.json"
+    ],
+    "sourcedVia": "live web search (WebSearch); homepage WebFetch blocked by egress policy",
+    "houses": 111,
+    "vehicles": 474,
+    "markets": 22,
+    "rates": {
+      "scraped": 74,
+      "estimated": 400
+    },
+    "deliveryDeals": 59,
+    "verifiedHouses": 18
+  },
+  "markets": [
+    {
+      "code": "CHI",
+      "name": "Chicago"
+    },
+    {
+      "code": "CLT",
+      "name": "Charlotte"
+    },
+    {
+      "code": "SEA",
+      "name": "Seattle"
+    },
+    {
+      "code": "DTW",
+      "name": "Detroit"
+    },
+    {
+      "code": "NYC",
+      "name": "New York City"
+    },
+    {
+      "code": "BOS",
+      "name": "Boston"
+    },
+    {
+      "code": "DCA",
+      "name": "Washington DC"
+    },
+    {
+      "code": "PHL",
+      "name": "Philadelphia"
+    },
+    {
+      "code": "MIA",
+      "name": "Miami"
+    },
+    {
+      "code": "MCO",
+      "name": "Orlando"
+    },
+    {
+      "code": "ATL",
+      "name": "Atlanta"
+    },
+    {
+      "code": "BNA",
+      "name": "Nashville"
+    },
+    {
+      "code": "LAS",
+      "name": "Las Vegas"
+    },
+    {
+      "code": "PHX",
+      "name": "Phoenix / Scottsdale"
+    },
+    {
+      "code": "DEN",
+      "name": "Denver"
+    },
+    {
+      "code": "HOU",
+      "name": "Houston"
+    },
+    {
+      "code": "DFW",
+      "name": "Dallas"
+    },
+    {
+      "code": "AUS",
+      "name": "Austin"
+    },
+    {
+      "code": "SAT",
+      "name": "San Antonio"
+    },
+    {
+      "code": "LAX",
+      "name": "Los Angeles"
+    },
+    {
+      "code": "SAN",
+      "name": "San Diego"
+    },
+    {
+      "code": "SFO",
+      "name": "San Francisco"
+    }
+  ],
+  "houses": [
+    {
+      "slug": "ds-luxury-chi",
+      "name": "DS Luxury",
+      "url": "https://www.dsluxury.com",
+      "city": "Chicago",
+      "market": "CHI",
+      "marketName": "Chicago",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.5,
+      "ratingCount": 131,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.047,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "812 GTS",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Spider",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Aventador SVJ",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Spectre",
+          "category": "ELECTRIC",
+          "dailyRate": 650,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "Artura Spider",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "next-lvl-exotics-chi",
+      "name": "Next LVL Exotics",
+      "url": "https://nextlvlexotics.com",
+      "city": "Chicago",
+      "market": "CHI",
+      "marketName": "Chicago",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.25,
+      "ratingCount": 280,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 0.979,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "dde-rentals-chi",
+      "name": "DDE Rentals",
+      "url": "https://www.dderentals.com",
+      "city": "Chicago",
+      "market": "CHI",
+      "marketName": "Chicago",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.92,
+      "ratingCount": 197,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.973,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Wraith",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Corvette",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "imagine-exotics-chi",
+      "name": "Imagine Exotics",
+      "url": "https://imagineluxurycarrental.com",
+      "city": "Chicago",
+      "market": "CHI",
+      "marketName": "Chicago",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.47,
+      "ratingCount": 289,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.966,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "axel-luxury-chi",
+      "name": "Axel Luxury",
+      "url": "https://www.axelluxury.com",
+      "city": "Chicago",
+      "market": "CHI",
+      "marketName": "Chicago",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.88,
+      "ratingCount": 245,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.055,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Corvette",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G63 AMG",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "mvp-charlotte-clt",
+      "name": "MVP Charlotte",
+      "url": "https://www.mvpcharlotte.com",
+      "city": "Charlotte",
+      "market": "CLT",
+      "marketName": "Charlotte",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.48,
+      "ratingCount": 101,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.06,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1500,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 GTB",
+          "category": "SUPERCAR",
+          "dailyRate": 2000,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "shirley-luxury-clt",
+      "name": "Shirley Luxury",
+      "url": "https://www.shirlux.com",
+      "city": "Charlotte",
+      "market": "CLT",
+      "marketName": "Charlotte",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.78,
+      "ratingCount": 178,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.002,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan LP 610-4",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570GT",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911 Turbo S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Corvette C8",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "charlotte-exotic-clt",
+      "name": "Charlotte Exotic",
+      "url": "https://www.charlotteexotic.com",
+      "city": "Charlotte",
+      "market": "CLT",
+      "marketName": "Charlotte",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.46,
+      "ratingCount": 121,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.099,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "premier-auto-charlotte-clt",
+      "name": "Premier Auto Charlotte",
+      "url": "https://premierautocharlotte.com",
+      "city": "Charlotte",
+      "market": "CLT",
+      "marketName": "Charlotte",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.66,
+      "ratingCount": 143,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 0.954,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "Roma",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G63 AMG",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "zadart-sea",
+      "name": "Zadart",
+      "url": "https://zadart.com",
+      "city": "Seattle",
+      "market": "SEA",
+      "marketName": "Seattle",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.43,
+      "ratingCount": 121,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.989,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Aventador S LP740-4",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan EVO",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S Spider",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Land Rover",
+          "model": "Range Rover",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "paladin-exotics-sea",
+      "name": "Paladin Exotics",
+      "url": "https://rentpaladin.com",
+      "city": "Seattle",
+      "market": "SEA",
+      "marketName": "Seattle",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.49,
+      "ratingCount": 225,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.001,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911 Carrera 4S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Bentayga",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Aston Martin",
+          "model": "Vantage",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "seattle-exotic-rentals-sea",
+      "name": "Seattle Exotic Rentals",
+      "url": "https://seattleexoticrentals.com",
+      "city": "Seattle",
+      "market": "SEA",
+      "marketName": "Seattle",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.27,
+      "ratingCount": 260,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.077,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "sport-driving-motors-sea",
+      "name": "Sport Driving Motors",
+      "url": "https://sportdrivingmotors.com",
+      "city": "Seattle",
+      "market": "SEA",
+      "marketName": "Seattle",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.91,
+      "ratingCount": 165,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.995,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Corvette",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "corsa-nero-dtw",
+      "name": "Corsa Nero",
+      "url": "https://www.corsanero.com",
+      "city": "Detroit",
+      "market": "DTW",
+      "marketName": "Detroit",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.39,
+      "ratingCount": 245,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.089,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Chevrolet",
+          "model": "Corvette C8 Stingray",
+          "category": "SUPERCAR",
+          "dailyRate": 450,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "BMW",
+          "model": "M4 Competition",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 450,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G63 AMG",
+          "category": "LUXURY_SUV",
+          "dailyRate": 650,
+          "rateSource": "scraped"
+        }
+      ]
+    },
+    {
+      "slug": "drmlxry-dtw",
+      "name": "DRMLXRY",
+      "url": "https://drmlxry.com",
+      "city": "Detroit",
+      "market": "DTW",
+      "marketName": "Detroit",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.89,
+      "ratingCount": 276,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.049,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan STO",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan EVO",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Maybach",
+          "model": "S680",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Cadillac",
+          "model": "Escalade",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "exclusive-exotics-detroit-dtw",
+      "name": "Exclusive Exotics Detroit",
+      "url": "https://exclusiveexoticcarrentaldetroit.com",
+      "city": "Detroit",
+      "market": "DTW",
+      "marketName": "Detroit",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.6,
+      "ratingCount": 138,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.072,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Audi",
+          "model": "R8",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "veluxity-exotic-car-rental-nyc",
+      "name": "Veluxity Exotic Car Rental",
+      "url": "https://www.veluxityexoticcarrental.com/",
+      "city": "New York City",
+      "market": "NYC",
+      "marketName": "New York City",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.78,
+      "ratingCount": 79,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.089,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1200,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1500,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 2200,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1450,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1150,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "blustreet-exotic-car-rentals-nyc",
+      "name": "BluStreet Exotic Car Rentals",
+      "url": "https://www.blustreetexoticcarrentals.com/",
+      "city": "New York City",
+      "market": "NYC",
+      "marketName": "New York City",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.74,
+      "ratingCount": 160,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.013,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan EVO",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1000,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1500,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 2500,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G63",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "scraped"
+        }
+      ]
+    },
+    {
+      "slug": "signature-car-collection-nyc",
+      "name": "Signature Car Collection",
+      "url": "https://signaturecarcollection.com/",
+      "city": "New York City",
+      "market": "NYC",
+      "marketName": "New York City",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.25,
+      "ratingCount": 74,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.078,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1450,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1450,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1450,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Dawn",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1550,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GTC",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1550,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "aaxotics-nyc",
+      "name": "AAXOTICS",
+      "url": "https://www.aaxotics.com/",
+      "city": "New York City",
+      "market": "NYC",
+      "marketName": "New York City",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.84,
+      "ratingCount": 147,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.025,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1450,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1550,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G63",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1100,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "premier-auto-new-york-nyc",
+      "name": "Premier Auto New York",
+      "url": "https://premierautonewyork.com/",
+      "city": "New York City",
+      "market": "NYC",
+      "marketName": "New York City",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.65,
+      "ratingCount": 145,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.969,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1450,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1100,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1100,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "boston-luxury-car-rental-bos",
+      "name": "Boston Luxury Car Rental",
+      "url": "https://bostonluxurycarrental.com/",
+      "city": "Boston",
+      "market": "BOS",
+      "marketName": "Boston",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.82,
+      "ratingCount": 221,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.025,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "88-exotic-car-rentals-bos",
+      "name": "88 Exotic Car Rentals",
+      "url": "https://www.88exoticrentals.com/",
+      "city": "Boston",
+      "market": "BOS",
+      "marketName": "Boston",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.6,
+      "ratingCount": 217,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.097,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Maserati",
+          "model": "Levante",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "prestige-luxury-rentals-bos",
+      "name": "Prestige Luxury Rentals",
+      "url": "https://prestigeluxuryrentals.com/boston-ma/",
+      "city": "Boston",
+      "market": "BOS",
+      "marketName": "Boston",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.44,
+      "ratingCount": 154,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.961,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "McLaren",
+          "model": "720S Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Dawn",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "Portofino",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "fyv-exotic-car-rental-bos",
+      "name": "FYV Exotic Car Rental",
+      "url": "https://fyvexoticcarrental.com/exotic-cars-boston/",
+      "city": "Boston",
+      "market": "BOS",
+      "marketName": "Boston",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.52,
+      "ratingCount": 266,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 0.981,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911 Turbo",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "capital-exotic-dca",
+      "name": "Capital Exotic",
+      "url": "https://capitalexotic.com/",
+      "city": "Washington DC",
+      "market": "DCA",
+      "marketName": "Washington DC",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.35,
+      "ratingCount": 273,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.034,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Aston Martin",
+          "model": "DB11",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "exodrive-exotic-car-rentals-dca",
+      "name": "ExoDrive Exotic Car Rentals",
+      "url": "https://exodrive.co/",
+      "city": "Washington DC",
+      "market": "DCA",
+      "marketName": "Washington DC",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.52,
+      "ratingCount": 216,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 0.951,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "488 GTB",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911 Carrera",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "my-sugar-exotics-dca",
+      "name": "My Sugar Exotics",
+      "url": "https://mysugarexotics.com/",
+      "city": "Washington DC",
+      "market": "DCA",
+      "marketName": "Washington DC",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.45,
+      "ratingCount": 132,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 0.997,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "California",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Wraith",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G63",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "dc-exotic-car-rentals-dca",
+      "name": "DC Exotic Car Rentals",
+      "url": "https://dcexoticrentals.com/",
+      "city": "Washington DC",
+      "market": "DCA",
+      "marketName": "Washington DC",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.55,
+      "ratingCount": 197,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.957,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "cmg-exotics-dca",
+      "name": "CMG Exotics",
+      "url": "https://cmgexotics.com/",
+      "city": "Washington DC",
+      "market": "DCA",
+      "marketName": "Washington DC",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.34,
+      "ratingCount": 229,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.048,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "philadelphia-exotic-rentals-phl",
+      "name": "Philadelphia Exotic Rentals",
+      "url": "https://www.philadelphiaexoticrentals.com/",
+      "city": "Philadelphia",
+      "market": "PHL",
+      "marketName": "Philadelphia",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.88,
+      "ratingCount": 212,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.045,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "AMG GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "fyv-phl",
+      "name": "FYV",
+      "url": "https://fyvco.com/tour/luxury-car-rental-philadelphia",
+      "city": "Philadelphia",
+      "market": "PHL",
+      "marketName": "Philadelphia",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.37,
+      "ratingCount": 280,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.099,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 800,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 800,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 400,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "S-Class",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 200,
+          "rateSource": "scraped"
+        }
+      ]
+    },
+    {
+      "slug": "signature-car-collection-phl",
+      "name": "Signature Car Collection",
+      "url": "https://signaturecarcollection.com/exotic-car-rental/philadelphia",
+      "city": "Philadelphia",
+      "market": "PHL",
+      "marketName": "Philadelphia",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.28,
+      "ratingCount": 120,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.031,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "prestige-luxury-rentals-phl",
+      "name": "Prestige Luxury Rentals",
+      "url": "https://prestigeluxuryrentals.com/philadelphia-pa/",
+      "city": "Philadelphia",
+      "market": "PHL",
+      "marketName": "Philadelphia",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.41,
+      "ratingCount": 108,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.092,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "Portofino",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911 Turbo",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Corvette",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "mvp-miami-mia",
+      "name": "MVP Miami",
+      "url": "https://www.mvpmiami.com/",
+      "city": "Miami",
+      "market": "MIA",
+      "marketName": "Miami",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.65,
+      "ratingCount": 31,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 0.975,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan Spyder",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1450,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Aventador",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1000,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1450,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "California T",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "mph-club-mia",
+      "name": "mph club",
+      "url": "https://mphclub.com/exotic-car-rental/",
+      "city": "Miami",
+      "market": "MIA",
+      "marketName": "Miami",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.7,
+      "ratingCount": 296,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.044,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Aventador",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus S",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1495,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "812 Superfast",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 995,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "765LT",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "amani-miami-mia",
+      "name": "Amani Miami",
+      "url": "https://amanimiami.com/",
+      "city": "Miami",
+      "market": "MIA",
+      "marketName": "Miami",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.81,
+      "ratingCount": 42,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.96,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1000,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "prestige-luxury-rentals-mia",
+      "name": "Prestige Luxury Rentals",
+      "url": "https://prestigeluxuryrentals.com/miami/",
+      "city": "Miami",
+      "market": "MIA",
+      "marketName": "Miami",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.86,
+      "ratingCount": 259,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.017,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan Series II",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1895,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G63 AMG",
+          "category": "LUXURY_SUV",
+          "dailyRate": 695,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "S580",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 495,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "suntime-exotic-car-rental-mia",
+      "name": "SunTime Exotic Car Rental",
+      "url": "https://www.suntimeexoticcarrental.com/",
+      "city": "Miami",
+      "market": "MIA",
+      "marketName": "Miami",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.48,
+      "ratingCount": 267,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.044,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1450,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "falcon-car-rental-mia",
+      "name": "Falcon Car Rental",
+      "url": "https://www.falconcarrental.com/fl/miami",
+      "city": "Miami",
+      "market": "MIA",
+      "marketName": "Miami",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.77,
+      "ratingCount": 210,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.045,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1000,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Bentayga",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1000,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "premier-auto-miami-mia",
+      "name": "Premier Auto Miami",
+      "url": "https://www.premierautomiami.com/",
+      "city": "Miami",
+      "market": "MIA",
+      "marketName": "Miami",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.7,
+      "ratingCount": 110,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.048,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1000,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911 Carrera",
+          "category": "SUPERCAR",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "royal-international-cars-mco",
+      "name": "Royal International Cars",
+      "url": "https://www.royalinternationalcars.com/",
+      "city": "Orlando",
+      "market": "MCO",
+      "marketName": "Orlando",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.22,
+      "ratingCount": 125,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.961,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1196,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "812",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1195,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1095,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan Evo Spyder",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1049,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Corvette C8",
+          "category": "SUPERCAR",
+          "dailyRate": 399,
+          "rateSource": "scraped"
+        }
+      ]
+    },
+    {
+      "slug": "orlando-exotic-car-rentals-mco",
+      "name": "Orlando Exotic Car Rentals",
+      "url": "https://orlandoexoticcarrentals.com/",
+      "city": "Orlando",
+      "market": "MCO",
+      "marketName": "Orlando",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.2,
+      "ratingCount": 204,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.053,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Aventador",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "corza-luxury-mco",
+      "name": "Corza Luxury",
+      "url": "https://www.corzaluxury.com/",
+      "city": "Orlando",
+      "market": "MCO",
+      "marketName": "Orlando",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.2,
+      "ratingCount": 34,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 0.992,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Corvette C8 3LT",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "Panamera",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 850,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Tesla",
+          "model": "Model S",
+          "category": "ELECTRIC",
+          "dailyRate": 700,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "prestige-luxury-rentals-mco",
+      "name": "Prestige Luxury Rentals",
+      "url": "https://prestigeluxuryrentals.com/orlando-fl/",
+      "city": "Orlando",
+      "market": "MCO",
+      "marketName": "Orlando",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.73,
+      "ratingCount": 140,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 0.964,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1000,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "luxury-exotic-rentals-atl",
+      "name": "Luxury Exotic Rentals",
+      "url": "https://www.luxuryexoticrentals.com/",
+      "city": "Atlanta",
+      "market": "ATL",
+      "marketName": "Atlanta",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.53,
+      "ratingCount": 82,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.052,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "mvp-atlanta-atl",
+      "name": "MVP Atlanta",
+      "url": "https://www.mvpatl.com/",
+      "city": "Atlanta",
+      "market": "ATL",
+      "marketName": "Atlanta",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.76,
+      "ratingCount": 253,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.015,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "milani-exotic-rentals-atl",
+      "name": "Milani Exotic Rentals",
+      "url": "https://milanirentals.com/",
+      "city": "Atlanta",
+      "market": "ATL",
+      "marketName": "Atlanta",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.53,
+      "ratingCount": 161,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.013,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Aston Martin",
+          "model": "DB11",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "premier-auto-atlanta-atl",
+      "name": "Premier Auto Atlanta",
+      "url": "https://premierautoatlanta.com/",
+      "city": "Atlanta",
+      "market": "ATL",
+      "marketName": "Atlanta",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.21,
+      "ratingCount": 282,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.017,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1900,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1495,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1395,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1495,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "premier-auto-nashville-bna",
+      "name": "Premier Auto Nashville",
+      "url": "https://premierautonashville.com/",
+      "city": "Nashville",
+      "market": "BNA",
+      "marketName": "Nashville",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.34,
+      "ratingCount": 156,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.008,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "Roma",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "music-city-dream-cars-bna",
+      "name": "Music City Dream Cars",
+      "url": "https://www.mcdcrentals.com/",
+      "city": "Nashville",
+      "market": "BNA",
+      "marketName": "Nashville",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.45,
+      "ratingCount": 279,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.021,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "Roma",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan Spyder EVO",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 599,
+          "rateSource": "scraped"
+        }
+      ]
+    },
+    {
+      "slug": "dream-toy-garage-bna",
+      "name": "Dream Toy Garage",
+      "url": "https://www.dreamtoygarage.com/",
+      "city": "Nashville",
+      "market": "BNA",
+      "marketName": "Nashville",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.91,
+      "ratingCount": 260,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.978,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 299,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G63 AMG",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "adrenaline-luxury-car-rentals-bna",
+      "name": "Adrenaline Luxury Car Rentals",
+      "url": "https://www.adrenalineluxuryrentals.com/",
+      "city": "Nashville",
+      "market": "BNA",
+      "marketName": "Nashville",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.73,
+      "ratingCount": 39,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.034,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "AMG GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "dream-exotics-las",
+      "name": "Dream Exotics",
+      "url": "https://dreamexoticrentalcars.com/",
+      "city": "Las Vegas",
+      "market": "LAS",
+      "marketName": "Las Vegas",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.82,
+      "ratingCount": 77,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.035,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Wraith",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "royalty-exotic-cars-las",
+      "name": "Royalty Exotic Cars",
+      "url": "https://www.royaltyexoticcars.com/",
+      "city": "Las Vegas",
+      "market": "LAS",
+      "marketName": "Las Vegas",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.22,
+      "ratingCount": 72,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.017,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1000,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "777-exotics-las",
+      "name": "777 Exotics",
+      "url": "https://777exotics.com/las-vegas/",
+      "city": "Las Vegas",
+      "market": "LAS",
+      "marketName": "Las Vegas",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.58,
+      "ratingCount": 163,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.046,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1450,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Wraith",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "select-exotic-cars-las",
+      "name": "Select Exotic Cars",
+      "url": "https://selectexoticcars.com/",
+      "city": "Las Vegas",
+      "market": "LAS",
+      "marketName": "Las Vegas",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.76,
+      "ratingCount": 174,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 0.968,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Wraith",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "lvc-exotics-las",
+      "name": "LVC Exotics",
+      "url": "https://lvcexotics.com/",
+      "city": "Las Vegas",
+      "market": "LAS",
+      "marketName": "Las Vegas",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.24,
+      "ratingCount": 202,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.097,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "vssr-las",
+      "name": "VSSR",
+      "url": "https://exotics.vssr.vegas/",
+      "city": "Las Vegas",
+      "market": "LAS",
+      "marketName": "Las Vegas",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.34,
+      "ratingCount": 240,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.001,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "F8",
+          "category": "SUPERCAR",
+          "dailyRate": 1499,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1499,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Audi",
+          "model": "R8 Spyder",
+          "category": "CONVERTIBLE",
+          "dailyRate": 749,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "Maybach",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "lanier-luxury-rentals-las",
+      "name": "Lanier Luxury Rentals",
+      "url": "https://www.lanierluxuryrental.com/",
+      "city": "Las Vegas",
+      "market": "LAS",
+      "marketName": "Las Vegas",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.58,
+      "ratingCount": 209,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.026,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "McLaren",
+          "model": "570GT",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Wraith",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "apex-exotic-rentals-phx",
+      "name": "Apex Exotic Rentals",
+      "url": "https://apexexoticrentals.com/areas-we-serve/scottsdale/",
+      "city": "Scottsdale",
+      "market": "PHX",
+      "marketName": "Phoenix / Scottsdale",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.87,
+      "ratingCount": 30,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 0.996,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan Spyder",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1500,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 2000,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S Spyder",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G63 AMG",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "premier-luxury-club-phx",
+      "name": "Premier Luxury Club",
+      "url": "https://premierluxuryclub.com/",
+      "city": "Scottsdale",
+      "market": "PHX",
+      "marketName": "Phoenix / Scottsdale",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.57,
+      "ratingCount": 51,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.019,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan Spyder",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Audi",
+          "model": "R8",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "desert-luxe-exotics-phx",
+      "name": "Desert Luxe Exotics",
+      "url": "https://www.desertluxeexotics.com",
+      "city": "Scottsdale",
+      "market": "PHX",
+      "marketName": "Phoenix / Scottsdale",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.44,
+      "ratingCount": 246,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 0.979,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G63 AMG",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "grant-motor-group-phx",
+      "name": "Grant Motor Group",
+      "url": "https://grantmotorgroup.com/",
+      "city": "Scottsdale",
+      "market": "PHX",
+      "marketName": "Phoenix / Scottsdale",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.68,
+      "ratingCount": 219,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.035,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "fisher-luxury-rental-phx",
+      "name": "Fisher Luxury Rental",
+      "url": "https://fisherluxuryrental.com/",
+      "city": "Phoenix",
+      "market": "PHX",
+      "marketName": "Phoenix / Scottsdale",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.23,
+      "ratingCount": 275,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.995,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1499,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1299,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan Spyder",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1099,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G-Wagon",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "rogue-1-exotics-phx",
+      "name": "Rogue 1 Exotics",
+      "url": "https://rogue1exotics.com/",
+      "city": "Phoenix",
+      "market": "PHX",
+      "marketName": "Phoenix / Scottsdale",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.9,
+      "ratingCount": 124,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.027,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "denver-exotic-rental-cars-den",
+      "name": "Denver Exotic Rental Cars",
+      "url": "https://www.denverexoticrentalcars.com/",
+      "city": "Denver",
+      "market": "DEN",
+      "marketName": "Denver",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.64,
+      "ratingCount": 161,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.969,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan Spyder",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "12C",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "458 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911 S Cabriolet",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Maserati",
+          "model": "GranTurismo",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Aston Martin",
+          "model": "Vantage",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "majestic-roars-den",
+      "name": "Majestic Roars",
+      "url": "https://majesticroars.com/denver/",
+      "city": "Denver",
+      "market": "DEN",
+      "marketName": "Denver",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.36,
+      "ratingCount": 152,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.989,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Aston Martin",
+          "model": "Vantage",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "denver-car-club-den",
+      "name": "Denver Car Club",
+      "url": "https://www.denvercarclub.com/exotic-car-rental-denver/",
+      "city": "Denver",
+      "market": "DEN",
+      "marketName": "Denver",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.52,
+      "ratingCount": 58,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 0.956,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911 Turbo",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "drive-colorado-exotic-rentals-den",
+      "name": "Drive Colorado Exotic Rentals",
+      "url": "https://www.drivecoexotics.com/garage/",
+      "city": "Denver",
+      "market": "DEN",
+      "marketName": "Denver",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.52,
+      "ratingCount": 129,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.025,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Maserati",
+          "model": "Levante Trofeo",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "rush-motors-den",
+      "name": "Rush Motors",
+      "url": "https://rushmotors.club/",
+      "city": "Denver",
+      "market": "DEN",
+      "marketName": "Denver",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.45,
+      "ratingCount": 240,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.028,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Audi",
+          "model": "R8",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "carbon-auto-group-hou",
+      "name": "Carbon Auto Group",
+      "url": "https://carbonautogroup.com/",
+      "city": "Houston",
+      "market": "HOU",
+      "marketName": "Houston",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.42,
+      "ratingCount": 27,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 0.974,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Aston Martin",
+          "model": "DB11",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Maserati",
+          "model": "Levante",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "uptown-exotics-hou",
+      "name": "Uptown Exotics",
+      "url": "https://uptownexotics.com/",
+      "city": "Houston",
+      "market": "HOU",
+      "marketName": "Houston",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.93,
+      "ratingCount": 233,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.08,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1499,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1599,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1599,
+          "rateSource": "scraped"
+        }
+      ]
+    },
+    {
+      "slug": "iexotic-hou",
+      "name": "iExotic",
+      "url": "https://iexoticauto.com/",
+      "city": "Houston",
+      "market": "HOU",
+      "marketName": "Houston",
+      "tier": "ELITE",
+      "verified": true,
+      "rating": 4.35,
+      "ratingCount": 119,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.068,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan EVO",
+          "category": "SUPERCAR",
+          "dailyRate": 1000,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Aventador",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Corvette C8",
+          "category": "SUPERCAR",
+          "dailyRate": 400,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "Roma",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "royal-exotics-usa-hou",
+      "name": "Royal Exotics USA",
+      "url": "https://royalexoticsusa.com/",
+      "city": "Houston",
+      "market": "HOU",
+      "marketName": "Houston",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.5,
+      "ratingCount": 121,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.043,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "luxo-exotics-hou",
+      "name": "Luxo Exotics",
+      "url": "https://luxoexotics.com/",
+      "city": "Houston",
+      "market": "HOU",
+      "marketName": "Houston",
+      "tier": "ELITE",
+      "verified": true,
+      "rating": 4.52,
+      "ratingCount": 125,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.044,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Wraith",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Bentayga",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "luxe-af-motors-hou",
+      "name": "Luxe AF Motors",
+      "url": "https://luxeafmotors.com/",
+      "city": "Houston",
+      "market": "HOU",
+      "marketName": "Houston",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.49,
+      "ratingCount": 192,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.072,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan EVO",
+          "category": "SUPERCAR",
+          "dailyRate": 399,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "exotic-cars-houston-tx-hou",
+      "name": "Exotic Cars Houston TX",
+      "url": "https://www.exoticcarshoustontx.com/",
+      "city": "Houston",
+      "market": "HOU",
+      "marketName": "Houston",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.27,
+      "ratingCount": 286,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.059,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "platinum-motorcars-dfw",
+      "name": "Platinum Motorcars",
+      "url": "https://platinummotorcars.com/",
+      "city": "Dallas",
+      "market": "DFW",
+      "marketName": "Dallas",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.2,
+      "ratingCount": 141,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.059,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "black-label-exotics-dfw",
+      "name": "Black Label Exotics",
+      "url": "https://blacklabelexotics.com/",
+      "city": "Dallas",
+      "market": "DFW",
+      "marketName": "Dallas",
+      "tier": "ELITE",
+      "verified": true,
+      "rating": 4.33,
+      "ratingCount": 285,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 0.959,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Wraith",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "oro-reserve-dfw",
+      "name": "Oro Reserve",
+      "url": "https://ororeserve.com/",
+      "city": "Dallas",
+      "market": "DFW",
+      "marketName": "Dallas",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.54,
+      "ratingCount": 214,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.072,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911 Turbo",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "exotic-cars-dallas-dfw",
+      "name": "Exotic Cars Dallas",
+      "url": "https://exoticcarsdallas.com/",
+      "city": "Dallas",
+      "market": "DFW",
+      "marketName": "Dallas",
+      "tier": "ELITE",
+      "verified": true,
+      "rating": 4.63,
+      "ratingCount": 176,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.054,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 499,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 GTB",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "veluxity-dfw",
+      "name": "Veluxity",
+      "url": "https://www.veluxityexoticcarrental.com/exotic-car-rental-dallas-tx",
+      "city": "Dallas",
+      "market": "DFW",
+      "marketName": "Dallas",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.32,
+      "ratingCount": 126,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.999,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan Spyder Evo",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1095,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1795,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1095,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1395,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Wraith",
+          "category": "GRAND_TOURER",
+          "dailyRate": 795,
+          "rateSource": "scraped"
+        }
+      ]
+    },
+    {
+      "slug": "caliber-luxury-rentals-aus",
+      "name": "Caliber Luxury Rentals",
+      "url": "https://www.caliberluxuryrentals.com/",
+      "city": "Austin",
+      "market": "AUS",
+      "marketName": "Austin",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.23,
+      "ratingCount": 95,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.006,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Audi",
+          "model": "R8",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "BMW",
+          "model": "M8",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "zara-exotics-aus",
+      "name": "Zara Exotics",
+      "url": "https://www.zaraexotics.com/",
+      "city": "Austin",
+      "market": "AUS",
+      "marketName": "Austin",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.24,
+      "ratingCount": 100,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.01,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G-Wagon",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Corvette",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Tesla",
+          "model": "Model S",
+          "category": "ELECTRIC",
+          "dailyRate": 650,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "ace-exotic-rentals-aus",
+      "name": "Ace Exotic Rentals",
+      "url": "https://aceexotics.com/",
+      "city": "Austin",
+      "market": "AUS",
+      "marketName": "Austin",
+      "tier": "ELITE",
+      "verified": true,
+      "rating": 4.45,
+      "ratingCount": 192,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 0.956,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "G-Wagon",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "uptown-exotics-austin-aus",
+      "name": "Uptown Exotics Austin",
+      "url": "https://uptownexotics.com/austin-showroom/",
+      "city": "Austin",
+      "market": "AUS",
+      "marketName": "Austin",
+      "tier": "ELITE",
+      "verified": true,
+      "rating": 4.42,
+      "ratingCount": 65,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.066,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1499,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1599,
+          "rateSource": "scraped"
+        }
+      ]
+    },
+    {
+      "slug": "exotic-dreams-cars-sat",
+      "name": "Exotic Dreams Cars",
+      "url": "https://exoticdreamscars.com/",
+      "city": "San Antonio",
+      "market": "SAT",
+      "marketName": "San Antonio",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.46,
+      "ratingCount": 125,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.021,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "SF90 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F12 TDF",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Aventador",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "800exoticar-san-antonio-sat",
+      "name": "800ExotiCar San Antonio",
+      "url": "https://www.800exoticars.com/locations/texas/san-antonio.html",
+      "city": "San Antonio",
+      "market": "SAT",
+      "marketName": "San Antonio",
+      "tier": "STANDARD",
+      "verified": true,
+      "rating": 4.49,
+      "ratingCount": 280,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.072,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Bentayga",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Maserati",
+          "model": "Levante",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "veluxity-san-antonio-sat",
+      "name": "Veluxity San Antonio",
+      "url": "https://www.veluxityexoticcarrental.com/exotic-car-rental-san-antonio-tx",
+      "city": "San Antonio",
+      "market": "SAT",
+      "marketName": "San Antonio",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.79,
+      "ratingCount": 185,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.032,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1095,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1395,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1095,
+          "rateSource": "scraped"
+        }
+      ]
+    },
+    {
+      "slug": "royal-exotic-sa-sat",
+      "name": "Royal Exotic SA",
+      "url": "https://royalexoticsa.com/",
+      "city": "San Antonio",
+      "market": "SAT",
+      "marketName": "San Antonio",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.21,
+      "ratingCount": 209,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.048,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "instant-luxury-rentals-san-antonio-sat",
+      "name": "Instant Luxury Rentals San Antonio",
+      "url": "https://www.instantluxuryrentals.com/exotic-car-rentals/san-antonio-tx/",
+      "city": "San Antonio",
+      "market": "SAT",
+      "marketName": "San Antonio",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.73,
+      "ratingCount": 81,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.05,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 Spider",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 800,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1200,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "falcon-car-rental-lax",
+      "name": "Falcon Car Rental",
+      "url": "https://www.falconcarrental.com/",
+      "city": "Los Angeles",
+      "market": "LAX",
+      "marketName": "Los Angeles",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.9,
+      "ratingCount": 53,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.966,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan EVO",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1100,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "premier-auto-los-angeles-lax",
+      "name": "Premier Auto Los Angeles",
+      "url": "https://premierautolosangeles.com/",
+      "city": "Los Angeles",
+      "market": "LAX",
+      "marketName": "Los Angeles",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.29,
+      "ratingCount": 44,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.08,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Porsche",
+          "model": "911 Cabriolet",
+          "category": "CONVERTIBLE",
+          "dailyRate": 699,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1299,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "Roma",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1499,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1899,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Bugatti",
+          "model": "Chiron",
+          "category": "HYPERCAR",
+          "dailyRate": 10350,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "mph-club-lax",
+      "name": "mph club",
+      "url": "https://mphclub.com/exotic-car-rental-los-angeles/",
+      "city": "Los Angeles",
+      "market": "LAX",
+      "marketName": "Los Angeles",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.45,
+      "ratingCount": 193,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.987,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "488 GTB",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Phantom",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1100,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "pugachev-luxury-car-rental-lax",
+      "name": "Pugachev Luxury Car Rental",
+      "url": "https://pugachev.la/",
+      "city": "Los Angeles",
+      "market": "LAX",
+      "marketName": "Los Angeles",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.73,
+      "ratingCount": 198,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.067,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 1150,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan EVO",
+          "category": "SUPERCAR",
+          "dailyRate": 875,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1100,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 950,
+          "rateSource": "scraped"
+        }
+      ]
+    },
+    {
+      "slug": "uniq-luxury-rentals-lax",
+      "name": "UNIQ Luxury Rentals",
+      "url": "https://uniq.la/los-angeles/exotic-car-rental",
+      "city": "Los Angeles",
+      "market": "LAX",
+      "marketName": "Los Angeles",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.51,
+      "ratingCount": 237,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.091,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 2200,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1899,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Corvette",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "prestige-luxury-rentals-lax",
+      "name": "Prestige Luxury Rentals",
+      "url": "https://prestigeluxuryrentals.com/los-angeles-ca/",
+      "city": "Los Angeles",
+      "market": "LAX",
+      "marketName": "Los Angeles",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.53,
+      "ratingCount": 153,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.973,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Aventador",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "812",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1100,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Dawn",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1500,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Bentayga",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "monza-exotics-lax",
+      "name": "Monza Exotics",
+      "url": "https://monzaexotics.com/",
+      "city": "Los Angeles",
+      "market": "LAX",
+      "marketName": "Los Angeles",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.93,
+      "ratingCount": 161,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.066,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan EVO Spyder",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1500,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "beverly-hills-car-rental-lax",
+      "name": "Beverly Hills Car Rental",
+      "url": "https://www.bhcarrental.com/",
+      "city": "Beverly Hills",
+      "market": "LAX",
+      "marketName": "Los Angeles",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.64,
+      "ratingCount": 68,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 0.998,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1100,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Aston Martin",
+          "model": "DB11",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1100,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "Portofino",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1500,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "rodeo-exotic-rentals-lax",
+      "name": "Rodeo Exotic Rentals",
+      "url": "https://rodeoexoticrentals.com/",
+      "city": "Beverly Hills",
+      "market": "LAX",
+      "marketName": "Los Angeles",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.93,
+      "ratingCount": 107,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.084,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1400,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "blu-motors-lax",
+      "name": "BLU Motors",
+      "url": "https://www.blucarrental.com/",
+      "city": "Beverly Hills",
+      "market": "LAX",
+      "marketName": "Los Angeles",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.43,
+      "ratingCount": 71,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.063,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "Roma",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1100,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1100,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "san-diego-prestige-san",
+      "name": "San Diego Prestige",
+      "url": "https://sandiegoprestige.com/",
+      "city": "San Diego",
+      "market": "SAN",
+      "marketName": "San Diego",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.37,
+      "ratingCount": 195,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.045,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 GTB",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 850,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "rentxotic-san",
+      "name": "RENTXOTIC",
+      "url": "https://www.rentxotic.com/",
+      "city": "San Diego",
+      "market": "SAN",
+      "marketName": "San Diego",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.38,
+      "ratingCount": 193,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.058,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan EVO Spyder",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1195,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "F8 Tributo",
+          "category": "SUPERCAR",
+          "dailyRate": 1795,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "McLaren",
+          "model": "570S",
+          "category": "SUPERCAR",
+          "dailyRate": 995,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Cullinan",
+          "category": "LUXURY_SUV",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1000,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "ssr-experience-san",
+      "name": "SSR Experience",
+      "url": "https://www.ssr-experience.com/",
+      "city": "San Diego",
+      "market": "SAN",
+      "marketName": "San Diego",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.9,
+      "ratingCount": 55,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.012,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Urus",
+          "category": "LUXURY_SUV",
+          "dailyRate": 950,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "california-exotic-car-rental-san",
+      "name": "California Exotic Car Rental",
+      "url": "https://www.caexoticcars.com/",
+      "city": "San Diego",
+      "market": "SAN",
+      "marketName": "San Diego",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.21,
+      "ratingCount": 192,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 0.989,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 GTB",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "Portofino",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Jaguar",
+          "model": "F-Type",
+          "category": "CONVERTIBLE",
+          "dailyRate": 1350,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Audi",
+          "model": "R8",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "sd-exotic-rentals-san",
+      "name": "SD Exotic Rentals",
+      "url": "https://sdexoticrentals.com/",
+      "city": "San Diego",
+      "market": "SAN",
+      "marketName": "San Diego",
+      "tier": "ELITE",
+      "verified": false,
+      "rating": 4.31,
+      "ratingCount": 66,
+      "insuranceTier": "PREMIUM",
+      "instantBook": true,
+      "priceMultiplier": 1.004,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "AMG GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1000,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1250,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "instant-luxury-rentals-sfo",
+      "name": "Instant Luxury Rentals",
+      "url": "https://www.instantluxuryrentals.com/exotic-car-rentals/san-francisco-ca/",
+      "city": "San Francisco",
+      "market": "SFO",
+      "marketName": "San Francisco",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.94,
+      "ratingCount": 72,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.034,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Phantom",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Continental GT",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "McLaren",
+          "model": "720S",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "club-sportiva-sfo",
+      "name": "Club Sportiva",
+      "url": "https://clubsportiva.com/",
+      "city": "San Francisco",
+      "market": "SFO",
+      "marketName": "San Francisco",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.94,
+      "ratingCount": 211,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.056,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Ferrari",
+          "model": "458 Italia",
+          "category": "SUPERCAR",
+          "dailyRate": 1999,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488 GTB",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Aston Martin",
+          "model": "Vantage",
+          "category": "GRAND_TOURER",
+          "dailyRate": 599,
+          "rateSource": "scraped"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Porsche",
+          "model": "911",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "silicon-valley-exotics-sfo",
+      "name": "Silicon Valley Exotics",
+      "url": "https://svexotic.com/exotic-car-rental-san-francisco/",
+      "city": "San Francisco",
+      "market": "SFO",
+      "marketName": "San Francisco",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.41,
+      "ratingCount": 147,
+      "insuranceTier": "PREMIUM",
+      "instantBook": false,
+      "priceMultiplier": 1.085,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Rolls-Royce",
+          "model": "Wraith",
+          "category": "GRAND_TOURER",
+          "dailyRate": 1050,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        }
+      ]
+    },
+    {
+      "slug": "a1-luxury-transport-sfo",
+      "name": "A1 Luxury Transport",
+      "url": "https://www.a1limosf.com/exotic-cars/",
+      "city": "San Francisco",
+      "market": "SFO",
+      "marketName": "San Francisco",
+      "tier": "STANDARD",
+      "verified": false,
+      "rating": 4.85,
+      "ratingCount": 251,
+      "insuranceTier": "COMMERCIAL",
+      "instantBook": false,
+      "priceMultiplier": 1.045,
+      "serviceFeePct": 0.15,
+      "vehicles": [
+        {
+          "make": "Lamborghini",
+          "model": "Huracan",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Ferrari",
+          "model": "488",
+          "category": "SUPERCAR",
+          "dailyRate": 1300,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Rolls-Royce",
+          "model": "Ghost",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        },
+        {
+          "make": "Bentley",
+          "model": "Flying Spur",
+          "category": "LUXURY_SEDAN",
+          "dailyRate": 900,
+          "rateSource": "estimated"
+        }
+      ]
+    }
+  ]
+}

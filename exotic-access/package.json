@@ -10,9 +10,11 @@
     "lint": "next lint",
     "test": "vitest run",
     "build:app": "node scripts/build-app.mjs",
+    "normalize": "node scripts/normalize-supply.mjs",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
-    "db:seed": "tsx prisma/seed.ts"
+    "db:seed": "tsx prisma/seed.ts",
+    "db:seed:scraped": "tsx prisma/seed-scraped.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

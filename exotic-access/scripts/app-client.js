@@ -38,9 +38,12 @@ function applyFilters(list) {
 
 function homeView() {
   const start = new Date(plus(7)), end = new Date(plus(10));
-  const cats = [...new Set(INVENTORY.map((i) => i.category))];
-  const markets = [...new Set(INVENTORY.map((i) => i.market))];
-  const cards = applyFilters(INVENTORY).map((it) => {
+  const cats = [...new Set(INVENTORY.map((i) => i.category))].sort();
+  const markets = [...new Set(INVENTORY.map((i) => i.market))].sort();
+  const filtered = applyFilters(INVENTORY);
+  const CAP = 60;
+  const shown = filtered.slice(0, CAP);
+  const cards = shown.map((it) => {
     const q = computeQuote(it, start, end);
     const rn = q.appliedRules.length ? ` · rules: ${q.appliedRules.map((r) => r.type).join(", ")}` : "";
     return `<div class="card" onclick="go('detail','${it.id}')">
@@ -54,12 +57,13 @@ function homeView() {
           <span class="badge">${it.category.replaceAll("_", " ")}</span>
           <span class="badge">★ ${it.rating.toFixed(1)} (${it.ratingCount})</span>
         </div>
-        <div class="price"><b>${money(q.dailyRate)}</b> <span class="muted">/ day</span></div>
-        <div class="quoteline">3-day total <b>${money(q.total)}</b> all-in${rn}</div>
+        <div class="price"><b>${money(q.dailyRate)}</b> <span class="muted">/ day</span>${it.rateSource === "scraped" ? '<span class="src"> · live rate</span>' : ""}</div>
+        <div class="quoteline">${it.house} · ${it.marketName}${rn ? " · " + rn.replace(" · rules:", "rules:") : ""}</div>
       </div></div>`;
   }).join("");
   return `<section class="hero"><h1>Drive the extraordinary.</h1>
-    <p>Supercars and luxury vehicles from vetted rental houses — instant, all-in pricing.</p>
+    <p>Supercars &amp; luxury vehicles from ${new Set(INVENTORY.map((i) => i.house)).size} vetted rental houses across ${markets.length} US markets — instant, all-in pricing.</p>
+    <div class="count">${filtered.length} cars${filtered.length > CAP ? ` · showing ${CAP}` : ""}</div>
     <div class="filters">
       <select onchange="state.filters.market=this.value;render()"><option value="">All markets</option>${markets.map((m) => `<option ${state.filters.market === m ? "selected" : ""}>${m}</option>`).join("")}</select>
       <select onchange="state.filters.category=this.value;render()"><option value="">All categories</option>${cats.map((c) => `<option value="${c}" ${state.filters.category === c ? "selected" : ""}>${c.replaceAll("_", " ")}</option>`).join("")}</select>
@@ -87,7 +91,9 @@ function detailView() {
         <span class="badge">★ ${it.rating.toFixed(1)} (${it.ratingCount})</span>
         ${it.instantBook ? '<span class="badge">⚡ Instant book</span>' : '<span class="badge">Request to book</span>'}
         ${it.deliveryDeal ? `<span class="badge deal">One-way → ${it.dropoff}</span>` : ""}
+        <span class="badge ${it.verified ? "ver" : ""}">${it.verified ? "✓ corroborated" : "source unverified"}</span>
       </div>
+      ${it.houseUrl ? `<div style="margin-top:8px;font-size:13px"><span class="muted">Sourced from </span><a href="${it.houseUrl}" target="_blank" rel="noopener" style="color:var(--accent)">${it.houseUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗</a> <span class="muted">· rate ${it.rateSource}</span></div>` : ""}
       <div class="specs">
         <div class="spec"><div class="k">Horsepower</div><div class="v">${it.hp} hp</div></div>
         <div class="spec"><div class="k">0–60 mph</div><div class="v">${it.zeroSixty}s</div></div>
