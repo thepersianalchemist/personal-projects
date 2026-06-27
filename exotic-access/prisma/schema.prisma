@@ -1,0 +1,472 @@
+// ExoticAccess — an exotic & luxury car rental marketplace.
+//
+// The data model is adapted from the SkyAccess charter-flight marketplace,
+// translated entity-for-entity into the exotic-car-rental domain:
+//
+//   SkyAccess              ->  ExoticAccess
+//   ---------------------      -------------------------------
+//   Operator (charter co.) ->  RentalHouse (the supplier / fleet owner)
+//   Aircraft               ->  Vehicle      (a specific car, by VIN)
+//   AircraftModel          ->  VehicleModel (make / model / trim)
+//   Airport / market       ->  Market       (metro delivery hub)
+//   Flight / empty leg     ->  Listing      (a bookable rental window;
+//                                            one-way "delivery deals" == empty legs)
+//   "Choice" operator tier ->  Verified "Elite" house tier
+//   Argus / Wyvern / ISBAO ->  Insurance + inspection certifications
+//   PricingRule/multiplier ->  PricingRule + priceMultiplier (dynamic engine)
+//   Booking / Payment      ->  Booking / Payment
+//   OperatorPayout         ->  HousePayout
+//   Broker                 ->  Concierge
+//   Review                 ->  Review
+//
+// Marketplace, not a single rental company: ExoticAccess never owns cars.
+// Houses list inventory; renters search & book; ExoticAccess takes a service
+// fee on each booking and remits the rest to the house via HousePayout.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Supply side: rental houses, their fleet, and the people who run them
+// ---------------------------------------------------------------------------
+
+enum HouseStatus {
+  PENDING // applied, not yet vetted
+  APPROVED // live on the marketplace
+  SUSPENDED // temporarily hidden (payout/insurance/dispute issue)
+  REJECTED
+}
+
+// The verified "Elite" tier — ExoticAccess's analog of SkyAccess "Choice".
+// A house is Elite only when it clears the supply-quality bar: approved,
+// adequately insured, vehicles inspected, fast to respond, well reviewed,
+// and pricing confirmed. Elite houses get ranking boost + the badge.
+enum HouseTier {
+  STANDARD
+  ELITE
+}
+
+// Insurance program backing the house's fleet (renter-facing trust signal).
+enum InsuranceTier {
+  NONE
+  STATE_MINIMUM
+  COMMERCIAL // commercial auto policy on file
+  PREMIUM // commercial + physical damage + excess liability
+}
+
+model RentalHouse {
+  id          String      @id @default(cuid())
+  companyName String
+  slug        String?     @unique
+  status      HouseStatus @default(PENDING)
+  tier        HouseTier   @default(STANDARD)
+
+  // Contact
+  email   String?
+  phone   String?
+  website String?
+
+  // Location / home market
+  address1 String?
+  city     String?
+  state    String?
+  country  String  @default("US")
+  homeMarketId String?
+  homeMarket   Market? @relation("HouseHomeMarket", fields: [homeMarketId], references: [id])
+
+  // Trust & quality signals (the "Elite" gate)
+  insuranceTier        InsuranceTier @default(NONE)
+  insuranceVerifiedAt  DateTime?
+  vehiclesInspected    Boolean       @default(false)
+  avgResponseMinutes   Int?
+  ratingAvg            Decimal       @default(0) @db.Decimal(3, 2)
+  ratingCount          Int           @default(0)
+
+  // Dynamic pricing — a house-wide multiplier the engine nudges toward market.
+  priceMultiplier      Decimal  @default(1.0) @db.Decimal(5, 3)
+  priceMultiplierAuto  Boolean  @default(false)
+  pricingConfirmed     Boolean  @default(false)
+
+  // Marketplace economics
+  serviceFeePct  Decimal @default(0.15) @db.Decimal(4, 3) // ExoticAccess take rate
+  payoutTermsDays Int    @default(2)
+  instantBook    Boolean @default(false)
+
+  // Growth
+  referralCode        String? @unique
+  referredByHouseId   String?
+  referredByHouse     RentalHouse?  @relation("HouseReferrals", fields: [referredByHouseId], references: [id])
+  referredHouses      RentalHouse[] @relation("HouseReferrals")
+
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  approvedAt DateTime?
+  deletedAt  DateTime?
+
+  vehicles     Vehicle[]
+  listings     Listing[]
+  bookings     Booking[]
+  payouts      HousePayout[]
+  pricingRules PricingRule[]
+  members      User[]        @relation("HouseMembers")
+  reviews      Review[]      @relation("ReviewSubjectHouse")
+
+  @@index([status, tier])
+  @@map("rental_house")
+}
+
+// A make/model/trim spec — shared catalog, like SkyAccess AircraftModel.
+model VehicleModel {
+  id        String  @id @default(cuid())
+  make      String // Lamborghini
+  model     String // Huracan
+  trim      String? // EVO Spyder
+  year      Int
+  category  VehicleCategory
+  seats     Int     @default(2)
+  doors     Int     @default(2)
+  horsepower Int?
+  zeroToSixty Decimal? @db.Decimal(4, 2) // seconds
+  imageUrl  String?
+
+  vehicles Vehicle[]
+
+  @@unique([make, model, trim, year])
+  @@map("vehicle_model")
+}
+
+enum VehicleCategory {
+  SUPERCAR // Ferrari, Lamborghini, McLaren
+  LUXURY_SEDAN // Rolls-Royce, Bentley
+  LUXURY_SUV // Urus, Cullinan, G-Wagon
+  CONVERTIBLE
+  GRAND_TOURER // Aston Martin, Continental GT
+  HYPERCAR // limited-run, 6-figure+ day rates
+  CLASSIC // collectible / vintage
+  ELECTRIC // Taycan, Plaid, Rimac
+}
+
+// A specific physical car owned by a house (SkyAccess Aircraft, by tail #).
+model Vehicle {
+  id        String      @id @default(cuid())
+  houseId   String
+  house     RentalHouse @relation(fields: [houseId], references: [id])
+  modelId   String
+  model     VehicleModel @relation(fields: [modelId], references: [id])
+
+  vin           String? @unique
+  nickname      String? // "the Rosso Huracan"
+  color         String?
+  licensePlate  String?
+  mileage       Int?
+  homeMarketId  String?
+  homeMarket    Market? @relation("VehicleHomeMarket", fields: [homeMarketId], references: [id])
+
+  // Per-vehicle economics & rules
+  baseDailyRate    Decimal  @db.Decimal(10, 2) // house's published day rate, USD
+  securityDeposit  Decimal  @default(0) @db.Decimal(10, 2)
+  includedMilesPerDay Int   @default(100)
+  extraMileFee     Decimal  @default(0) @db.Decimal(6, 2)
+  minRentalDays    Int      @default(1)
+  minRenterAge     Int      @default(25)
+  deliveryFee      Decimal  @default(0) @db.Decimal(8, 2)
+
+  inspected     Boolean   @default(false)
+  inspectedAt   DateTime?
+  active        Boolean   @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  images   VehicleImage[]
+  listings Listing[]
+  bookings Booking[]
+
+  @@index([houseId, active])
+  @@map("vehicle")
+}
+
+model VehicleImage {
+  id        String  @id @default(cuid())
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  url       String
+  position  Int     @default(0)
+  isHero    Boolean @default(false)
+
+  @@map("vehicle_image")
+}
+
+// A metro market / delivery hub. SkyAccess Airport, simplified.
+model Market {
+  id        String  @id @default(cuid())
+  code      String  @unique // "MIA", "LAX", "LAS"
+  name      String // "Miami", "Los Angeles"
+  state     String?
+  country   String  @default("US")
+  lat       Decimal? @db.Decimal(9, 6)
+  lng       Decimal? @db.Decimal(9, 6)
+
+  homeHouses    RentalHouse[] @relation("HouseHomeMarket")
+  homeVehicles  Vehicle[]     @relation("VehicleHomeMarket")
+  pickupListings  Listing[]   @relation("ListingPickupMarket")
+  dropoffListings Listing[]   @relation("ListingDropoffMarket")
+
+  @@map("market")
+}
+
+// ---------------------------------------------------------------------------
+// The bookable unit: a Listing == SkyAccess Flight.
+// A standard listing is an open availability window for a vehicle.
+// A "delivery deal" (deliveryDeal = true) is the empty-leg analog: the house
+// is repositioning a car between markets and offers it one-way at a discount.
+// ---------------------------------------------------------------------------
+
+enum ListingStatus {
+  DRAFT
+  PUBLISHED
+  PAUSED
+  BOOKED
+  EXPIRED
+}
+
+model Listing {
+  id        String        @id @default(cuid())
+  houseId   String
+  house     RentalHouse   @relation(fields: [houseId], references: [id])
+  vehicleId String
+  vehicle   Vehicle       @relation(fields: [vehicleId], references: [id])
+  status    ListingStatus @default(PUBLISHED)
+
+  // Availability window
+  availableFrom DateTime
+  availableTo   DateTime
+
+  // Geography
+  pickupMarketId  String
+  pickupMarket    Market  @relation("ListingPickupMarket", fields: [pickupMarketId], references: [id])
+  dropoffMarketId String?
+  dropoffMarket   Market? @relation("ListingDropoffMarket", fields: [dropoffMarketId], references: [id])
+
+  // Delivery-deal (empty-leg) fields
+  deliveryDeal       Boolean  @default(false)
+  deliveryDiscountPct Decimal @default(0) @db.Decimal(4, 3)
+
+  // Pricing snapshot at publish time (engine output; see lib/pricing.ts)
+  dailyRate     Decimal  @db.Decimal(10, 2) // post-multiplier, pre-fees
+  currency      String   @default("USD")
+
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  bookings Booking[]
+
+  @@index([status, availableFrom])
+  @@index([pickupMarketId, status])
+  @@map("listing")
+}
+
+// ---------------------------------------------------------------------------
+// Demand side: renters, bookings, payments, payouts
+// ---------------------------------------------------------------------------
+
+enum UserRole {
+  RENTER
+  HOUSE_ADMIN // staff at a rental house
+  CONCIERGE // books on behalf of clients (SkyAccess Broker)
+  ADMIN // ExoticAccess staff
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  phone     String?
+  role      UserRole @default(RENTER)
+
+  // license verification (renters)
+  licenseVerified Boolean   @default(false)
+  dateOfBirth     DateTime?
+
+  houseId String?
+  house   RentalHouse? @relation("HouseMembers", fields: [houseId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  bookings Booking[]
+  reviews  Review[]  @relation("ReviewAuthor")
+
+  @@map("user")
+}
+
+enum BookingStatus {
+  REQUESTED // renter requested, awaiting house accept (unless instant-book)
+  CONFIRMED
+  ACTIVE // car is out
+  COMPLETED
+  CANCELLED
+  DECLINED
+}
+
+model Booking {
+  id        String        @id @default(cuid())
+  status    BookingStatus @default(REQUESTED)
+
+  listingId String
+  listing   Listing     @relation(fields: [listingId], references: [id])
+  vehicleId String
+  vehicle   Vehicle     @relation(fields: [vehicleId], references: [id])
+  houseId   String
+  house     RentalHouse @relation(fields: [houseId], references: [id])
+  renterId  String
+  renter    User        @relation(fields: [renterId], references: [id])
+
+  startDate DateTime
+  endDate   DateTime
+  days      Int
+
+  // Money — full breakdown captured at booking time (see lib/pricing.ts)
+  dailyRate      Decimal @db.Decimal(10, 2)
+  rentalSubtotal Decimal @db.Decimal(10, 2) // dailyRate * days
+  deliveryFee    Decimal @default(0) @db.Decimal(8, 2)
+  serviceFee     Decimal @db.Decimal(10, 2) // ExoticAccess take
+  securityDeposit Decimal @default(0) @db.Decimal(10, 2)
+  total          Decimal @db.Decimal(10, 2) // renter pays this (ex-deposit hold)
+  housePayoutAmount Decimal @db.Decimal(10, 2) // total - serviceFee - deliveryFee passthrough handling
+  currency       String  @default("USD")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  payment Payment?
+  payout  HousePayout?
+  review  Review?
+
+  @@index([houseId, status])
+  @@index([renterId])
+  @@map("booking")
+}
+
+enum PaymentStatus {
+  PENDING
+  AUTHORIZED // incl. deposit hold
+  CAPTURED
+  REFUNDED
+  FAILED
+}
+
+model Payment {
+  id        String        @id @default(cuid())
+  bookingId String        @unique
+  booking   Booking       @relation(fields: [bookingId], references: [id])
+  status    PaymentStatus @default(PENDING)
+
+  amount          Decimal @db.Decimal(10, 2)
+  depositHold     Decimal @default(0) @db.Decimal(10, 2)
+  currency        String  @default("USD")
+  processorRef    String? // Stripe PaymentIntent id, etc.
+
+  createdAt DateTime @default(now())
+  capturedAt DateTime?
+
+  @@map("payment")
+}
+
+enum PayoutStatus {
+  SCHEDULED
+  PAID
+  HELD // dispute / inspection issue
+}
+
+model HousePayout {
+  id        String       @id @default(cuid())
+  houseId   String
+  house     RentalHouse  @relation(fields: [houseId], references: [id])
+  bookingId String       @unique
+  booking   Booking      @relation(fields: [bookingId], references: [id])
+  status    PayoutStatus @default(SCHEDULED)
+
+  amount    Decimal @db.Decimal(10, 2)
+  currency  String  @default("USD")
+  scheduledFor DateTime
+  paidAt    DateTime?
+
+  @@index([houseId, status])
+  @@map("house_payout")
+}
+
+// ---------------------------------------------------------------------------
+// Dynamic pricing engine — SkyAccess AircraftPricingRule + priceMultiplier
+// ---------------------------------------------------------------------------
+
+enum PricingRuleType {
+  SEASONAL // date-range surge/discount (holidays, winter in Miami)
+  EVENT // local demand spike (F1 weekend, Art Basel, car shows)
+  LENGTH_OF_RENTAL // multi-day discount tiers
+  DAY_OF_WEEK // weekend premium
+  LEAD_TIME // last-minute vs far-out
+  DELIVERY_DEAL // one-way repositioning discount
+}
+
+// A rule that adjusts price. Scope: whole house, a category, or one vehicle.
+model PricingRule {
+  id        String          @id @default(cuid())
+  houseId   String
+  house     RentalHouse     @relation(fields: [houseId], references: [id])
+  type      PricingRuleType
+  name      String
+  active    Boolean         @default(true)
+  priority  Int             @default(0) // higher wins within a type
+
+  // Scope (null scope == applies house-wide)
+  scopeCategory VehicleCategory?
+  scopeVehicleId String?
+
+  // Condition window (interpretation depends on type)
+  startDate DateTime?
+  endDate   DateTime?
+  marketId  String? // for EVENT rules tied to a metro
+
+  // Effect: a multiplicative adjustment, e.g. 1.40 = +40%, 0.85 = -15%
+  adjustment Decimal @db.Decimal(5, 3)
+
+  // For LENGTH_OF_RENTAL: applies when days >= minDays
+  minDays Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([houseId, active, type])
+  @@map("pricing_rule")
+}
+
+// ---------------------------------------------------------------------------
+// Reviews — SkyAccess Review
+// ---------------------------------------------------------------------------
+
+model Review {
+  id        String      @id @default(cuid())
+  bookingId String      @unique
+  booking   Booking     @relation(fields: [bookingId], references: [id])
+  authorId  String
+  author    User        @relation("ReviewAuthor", fields: [authorId], references: [id])
+  houseId   String
+  house     RentalHouse @relation("ReviewSubjectHouse", fields: [houseId], references: [id])
+
+  rating   Int // 1..5
+  cleanliness Int?
+  accuracy    Int?
+  communication Int?
+  body     String?
+
+  createdAt DateTime @default(now())
+
+  @@map("review")
+}
