@@ -22,9 +22,10 @@ function computeQuote(it, start, end) {
 }
 const plus = (days) => { const d = new Date(); d.setDate(d.getDate() + days); return d.toISOString().slice(0, 10); };
 
-let state = { view: "home", id: null, filters: { market: "", category: "", deal: false, max: "" } };
-function go(view, id) { state.view = view; if (id !== undefined) state.id = id; if (view === "detail") { state.dates = null; state.booked = false; } window.scrollTo(0, 0); render(); }
+let state = { view: "home", id: null, limit: 60, sort: "curated", filters: { market: "", category: "", deal: false, max: "" } };
+function go(view, id) { state.view = view; if (id !== undefined) state.id = id; if (view === "detail") { state.dates = null; state.booked = false; } if (view === "home" || view === "houses") state.limit = 60; window.scrollTo(0, 0); render(); }
 window.go = go;
+window.more = () => { state.limit += 60; render(); };
 
 function applyFilters(list) {
   const f = state.filters;
@@ -33,7 +34,13 @@ function applyFilters(list) {
     (!f.category || it.category === f.category) &&
     (!f.deal || it.deliveryDeal) &&
     (!f.max || it.base <= Number(f.max)));
-  return r.sort((a, b) => Number(b.elite) - Number(a.elite) || a.base - b.base); // Elite-first, then price
+  const sorters = {
+    curated: (a, b) => Number(b.elite) - Number(a.elite) || b.rating - a.rating,
+    "price-asc": (a, b) => a.base - b.base,
+    "price-desc": (a, b) => b.base - a.base,
+    rating: (a, b) => b.rating - a.rating || b.ratingCount - a.ratingCount,
+  };
+  return r.sort(sorters[state.sort] || sorters.curated);
 }
 
 function homeView() {
@@ -41,7 +48,7 @@ function homeView() {
   const cats = [...new Set(INVENTORY.map((i) => i.category))].sort();
   const markets = [...new Set(INVENTORY.map((i) => i.market))].sort();
   const filtered = applyFilters(INVENTORY);
-  const CAP = 60;
+  const CAP = state.limit;
   const shown = filtered.slice(0, CAP);
   const cards = shown.map((it) => {
     const q = computeQuote(it, start, end);
@@ -63,14 +70,48 @@ function homeView() {
   }).join("");
   return `<section class="hero"><h1>Drive the extraordinary.</h1>
     <p>Supercars &amp; luxury vehicles from ${new Set(INVENTORY.map((i) => i.house)).size} vetted rental houses across ${markets.length} US markets — instant, all-in pricing.</p>
-    <div class="count">${filtered.length} cars${filtered.length > CAP ? ` · showing ${CAP}` : ""}</div>
+    <div class="count">${filtered.length} cars${filtered.length > shown.length ? ` · showing ${shown.length}` : ""}</div>
+    <div class="filters">
+      <select onchange="state.filters.market=this.value;state.limit=60;render()"><option value="">All markets</option>${markets.map((m) => `<option ${state.filters.market === m ? "selected" : ""}>${m}</option>`).join("")}</select>
+      <select onchange="state.filters.category=this.value;state.limit=60;render()"><option value="">All categories</option>${cats.map((c) => `<option value="${c}" ${state.filters.category === c ? "selected" : ""}>${c.replaceAll("_", " ")}</option>`).join("")}</select>
+      <input type="number" placeholder="Max $/day" value="${state.filters.max}" oninput="state.filters.max=this.value;render()" style="width:120px">
+      <select class="sort" onchange="state.sort=this.value;render()">
+        ${[["curated", "Curated"], ["price-asc", "Price ↑"], ["price-desc", "Price ↓"], ["rating", "Top rated"]].map(([v, l]) => `<option value="${v}" ${state.sort === v ? "selected" : ""}>${l}</option>`).join("")}
+      </select>
+      <label class="chk"><input type="checkbox" ${state.filters.deal ? "checked" : ""} onchange="state.filters.deal=this.checked;state.limit=60;render()"> One-way deals only</label>
+    </div>
+    <div class="grid">${cards || '<p class="muted">No cars match those filters.</p>'}</div>
+    ${filtered.length > shown.length ? `<button class="morebtn" onclick="more()">Load more (${filtered.length - shown.length} more)</button>` : ""}</section>`;
+}
+
+function housesView() {
+  // Derive the supplier directory from inventory: one entry per house.
+  const byHouse = new Map();
+  for (const it of INVENTORY) {
+    if (state.filters.market && it.market !== state.filters.market) continue;
+    let h = byHouse.get(it.houseSlug);
+    if (!h) { h = { name: it.house, url: it.houseUrl, market: it.market, marketName: it.marketName, city: it.city, elite: it.elite, verified: it.verified, rating: it.rating, ratingCount: it.ratingCount, count: 0, min: Infinity }; byHouse.set(it.houseSlug, h); }
+    h.count++; h.min = Math.min(h.min, it.base);
+  }
+  const houses = [...byHouse.values()];
+  const markets = [...new Set(INVENTORY.map((i) => i.market))].sort();
+  // group by market name, markets alphabetical, elite-first within market
+  const groups = {};
+  for (const h of houses) (groups[h.marketName] ||= []).push(h);
+  const sections = Object.keys(groups).sort().map((mk) => {
+    const rows = groups[mk].sort((a, b) => Number(b.elite) - Number(a.elite) || b.rating - a.rating).map((h) => `
+      <div class="hrow">
+        <div class="hn">${h.name} ${h.elite ? '<span class="badge elite">★ Elite</span>' : ""} ${h.verified ? '<span class="badge ver">✓</span>' : ""}</div>
+        <div class="hm">${h.city} · ★ ${h.rating.toFixed(1)} (${h.ratingCount}) · ${h.count} cars · from ${money(h.min)}/day</div>
+        ${h.url ? `<a class="srcurl" href="${h.url}" target="_blank" rel="noopener">${h.url.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗</a>` : '<span class="muted" style="font-size:13px">no URL</span>'}
+      </div>`).join("");
+    return `<div class="mkt">${mk} · ${groups[mk].length} houses</div><div class="hlist">${rows}</div>`;
+  }).join("");
+  return `<section class="hero"><h1>Rental houses.</h1>
+    <p>${houses.length} vetted exotic-car rental houses sourced across ${markets.length} US markets. Each links to its source listing.</p>
     <div class="filters">
       <select onchange="state.filters.market=this.value;render()"><option value="">All markets</option>${markets.map((m) => `<option ${state.filters.market === m ? "selected" : ""}>${m}</option>`).join("")}</select>
-      <select onchange="state.filters.category=this.value;render()"><option value="">All categories</option>${cats.map((c) => `<option value="${c}" ${state.filters.category === c ? "selected" : ""}>${c.replaceAll("_", " ")}</option>`).join("")}</select>
-      <input type="number" placeholder="Max $/day" value="${state.filters.max}" oninput="state.filters.max=this.value;render()" style="width:120px">
-      <label class="chk"><input type="checkbox" ${state.filters.deal ? "checked" : ""} onchange="state.filters.deal=this.checked;render()"> One-way deals only</label>
-    </div>
-    <div class="grid">${cards || '<p class="muted">No cars match those filters.</p>'}</div></section>`;
+    </div></section>${sections}`;
 }
 
 function detailView() {
@@ -126,7 +167,10 @@ function detailView() {
 window.setDate = (k, v) => { state.dates = state.dates || { start: plus(7), end: plus(10) }; state.dates[k] = v; state.booked = false; render(); };
 window.book = () => { if (!state.email) { alert("Enter an email"); return; } state.booked = true; render(); };
 
-function render() { document.getElementById("view").innerHTML = state.view === "home" ? homeView() : detailView(); }
+function render() {
+  const view = state.view === "houses" ? housesView() : state.view === "detail" ? detailView() : homeView();
+  document.getElementById("view").innerHTML = view;
+}
 
 // Inline on* handlers run in global scope, so expose the bits they reference.
 window.state = state;

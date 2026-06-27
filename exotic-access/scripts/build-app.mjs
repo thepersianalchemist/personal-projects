@@ -77,6 +77,15 @@ const css = `
 .badge{font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
 .badge.elite{border-color:var(--accent);color:var(--accent)}.badge.deal{border-color:var(--accent-2);color:#ff6b81}.badge.ver{border-color:#244a30;color:#8fd19e}
 .src{color:#8fd19e;font-size:12px}.count{color:var(--muted);font-size:13px;padding:14px 0 0}
+.navlinks{display:flex;gap:18px}.navlinks a{color:var(--muted);font-size:14px;cursor:pointer}.navlinks a:hover{color:var(--accent)}
+.morebtn{display:block;margin:8px auto 50px;padding:11px 24px;background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:10px;font-weight:600;cursor:pointer}
+.hlist{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:22px 0 60px}
+@media(max-width:820px){.hlist{grid-template-columns:1fr}}
+.hrow{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.hrow .hn{font-size:17px;font-weight:650}.hrow .hm{color:var(--muted);font-size:13px;margin:2px 0 8px}
+.hrow a.srcurl{color:var(--accent);font-size:13px;word-break:break-all}
+.mkt{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid var(--line);padding:18px 0 6px;margin-top:10px}
+select.sort{background:#0f0f12;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px}
 .detail{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;padding:24px 0 60px}
 .back{display:inline-block;margin:18px 0 0;color:var(--muted);cursor:pointer;font-size:14px}
 .specs{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin:16px 0}
@@ -101,7 +110,7 @@ const head =
 const bodyTop =
   '<body><div class="wrap">' +
   '<nav class="nav"><div class="brand" onclick="go(\'home\')">EXOTIC<span>ACCESS</span></div>' +
-  '<div class="muted" style="font-size:14px">Vetted houses · Instant quotes</div></nav>' +
+  '<div class="navlinks"><a onclick="go(\'home\')">Cars</a><a onclick="go(\'houses\')">Houses</a></div></nav>' +
   '<div id="view"></div></div>';
 
 const out = head + bodyTop + '<script type="module">\n' + clientSrc + "\n</script></body></html>";
