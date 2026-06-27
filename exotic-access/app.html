@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ExoticAccess — interactive preview</title><style>
+:root{--bg:#0a0a0b;--panel:#151518;--line:#26262b;--text:#f5f5f7;--muted:#9a9aa3;--accent:#d4af37;--accent-2:#c8102e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line)}
+.brand{font-weight:700;letter-spacing:.5px;font-size:20px;cursor:pointer}.brand span{color:var(--accent)}
+.hero{padding:40px 0 8px}.hero h1{font-size:36px;margin:0 0 8px}.hero p{color:var(--muted);margin:0}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:18px 0 0}
+.filters select,.filters input[type=number]{background:#0f0f12;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px}
+.chk{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:24px 0 60px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}.detail{grid-template-columns:1fr!important}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .12s,border-color .12s}
+.card:hover{transform:translateY(-2px);border-color:var(--accent)}
+.card .photo,.detail .photo{aspect-ratio:16/10;background:#1f1f24 center/cover}
+.detail .photo{border-radius:14px}
+.card .body{padding:14px 16px 18px}
+.make{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.model{font-size:18px;font-weight:650;margin:2px 0 8px}
+.price{font-size:16px}.price b{color:var(--accent)}.muted{color:var(--muted)}
+.quoteline{font-size:12px;color:var(--muted);margin-top:8px}.quoteline b{color:var(--text)}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.badge{font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.badge.elite{border-color:var(--accent);color:var(--accent)}.badge.deal{border-color:var(--accent-2);color:#ff6b81}
+.detail{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;padding:24px 0 60px}
+.back{display:inline-block;margin:18px 0 0;color:var(--muted);cursor:pointer;font-size:14px}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin:16px 0}
+.spec{border-bottom:1px solid var(--line);padding:8px 0}.spec .k{color:var(--muted);font-size:13px}.spec .v{font-size:16px}
+.quote{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;position:sticky;top:20px}
+.quote h3{margin:0 0 4px;font-size:26px}.quote h3 small{font-size:14px;color:var(--muted);font-weight:400}
+.row{display:flex;justify-content:space-between;padding:6px 0;color:var(--muted);font-size:14px}
+.row.total{color:var(--text);font-weight:700;border-top:1px solid var(--line);margin-top:8px;padding-top:12px}.row b{color:var(--accent)}
+label{display:block;font-size:13px;color:var(--muted);margin:12px 0 4px}
+input[type=date],input[type=email]{width:100%;padding:10px;background:#0f0f12;color:var(--text);border:1px solid var(--line);border-radius:8px}
+.btn{display:block;width:100%;text-align:center;margin-top:16px;padding:12px;background:var(--accent);color:#111;border:none;border-radius:10px;font-weight:700;cursor:pointer}
+.btn:disabled{opacity:.5}
+.ok{margin-top:14px;padding:14px;border:1px solid var(--accent);border-radius:10px;background:#1a1708}
+.ok h4{margin:0 0 8px;color:var(--accent)}
+.rulechip{font-size:11px;color:#8fd19e;border:1px solid #244a30;border-radius:999px;padding:2px 8px;margin:0 4px 4px 0;display:inline-block}</style></head><body><div class="wrap"><nav class="nav"><div class="brand" onclick="go('home')">EXOTIC<span>ACCESS</span></div><div class="muted" style="font-size:14px">Vetted houses · Instant quotes</div></nav><div id="view"></div></div><script type="module">
+// Browser app for the interactive ExoticAccess preview.
+// build-app.mjs injects the bundled pricing engine at __ENGINE__ and the
+// inventory JSON at __INVENTORY__. This file is plain text to Node (never
+// evaluated server-side), so its template literals reach the browser intact.
+
+// lib/pricing.ts
+var MS_PER_DAY = 24 * 60 * 60 * 1e3;
+function rentalDays(start, end) {
+  const raw = Math.ceil((end.getTime() - start.getTime()) / MS_PER_DAY);
+  return Math.max(1, raw);
+}
+function round2(n) {
+  return Math.round((n + Number.EPSILON) * 100) / 100;
+}
+function overlapsWindow(start, end, rStart, rEnd) {
+  if (rStart && end < rStart) return false;
+  if (rEnd && start > rEnd) return false;
+  return true;
+}
+function ruleMatchesScope(rule, input) {
+  if (rule.scopeVehicleId && rule.scopeVehicleId !== input.vehicleId) return false;
+  if (rule.scopeCategory && rule.scopeCategory !== input.category) return false;
+  if (rule.type === "EVENT" && rule.marketId && rule.marketId !== input.pickupMarketId) return false;
+  return true;
+}
+function ruleApplies(rule, input, days) {
+  if (!rule.active) return false;
+  if (!ruleMatchesScope(rule, input)) return false;
+  switch (rule.type) {
+    case "SEASONAL":
+    case "EVENT":
+      return overlapsWindow(input.startDate, input.endDate, rule.startDate, rule.endDate);
+    case "LENGTH_OF_RENTAL":
+      return rule.minDays != null && days >= rule.minDays;
+    case "DAY_OF_WEEK": {
+      for (let t = input.startDate.getTime(); t < input.endDate.getTime(); t += MS_PER_DAY) {
+        const dow = new Date(t).getUTCDay();
+        if (dow === 0 || dow === 5 || dow === 6) return true;
+      }
+      return false;
+    }
+    case "LEAD_TIME": {
+      if (rule.minDays == null) return false;
+      const leadDays = Math.ceil((input.startDate.getTime() - input.now.getTime()) / MS_PER_DAY);
+      return leadDays <= rule.minDays;
+    }
+    case "DELIVERY_DEAL":
+      return !!input.deliveryDeal;
+    default:
+      return false;
+  }
+}
+function selectRules(input, days) {
+  const byType = /* @__PURE__ */ new Map();
+  for (const rule of input.rules) {
+    if (!ruleApplies(rule, input, days)) continue;
+    const current = byType.get(rule.type);
+    if (!current || rule.priority > current.priority) byType.set(rule.type, rule);
+  }
+  return [...byType.values()].map((r) => ({
+    type: r.type,
+    ruleId: r.id,
+    adjustment: r.adjustment
+  }));
+}
+function quote(input) {
+  const days = rentalDays(input.startDate, input.endDate);
+  let perDay = input.baseDailyRate * input.houseMultiplier;
+  const appliedRules = selectRules(input, days);
+  for (const r of appliedRules) perDay *= r.adjustment;
+  if (input.deliveryDeal && input.deliveryDiscountPct) {
+    perDay *= 1 - input.deliveryDiscountPct;
+  }
+  const dailyRate = round2(perDay);
+  const rentalSubtotal = round2(dailyRate * days);
+  const deliveryFee = round2(input.deliveryFee ?? 0);
+  const serviceFee = round2(rentalSubtotal * input.serviceFeePct);
+  const total = round2(rentalSubtotal + deliveryFee + serviceFee);
+  const securityDeposit = round2(input.securityDeposit ?? 0);
+  const housePayoutAmount = round2(rentalSubtotal + deliveryFee);
+  return {
+    days,
+    baseDailyRate: round2(input.baseDailyRate),
+    houseMultiplier: input.houseMultiplier,
+    dailyRate,
+    appliedRules,
+    rentalSubtotal,
+    deliveryFee,
+    serviceFee,
+    total,
+    securityDeposit,
+    housePayoutAmount,
+    currency: "USD"
+  };
+}
+
+
+
+const INVENTORY = [{"id":"huracan","make":"Lamborghini","model":"Huracán","trim":"EVO Spyder","year":2023,"category":"CONVERTIBLE","market":"MIA","marketName":"Miami","house":"Velocity Collection","elite":true,"instantBook":true,"rating":4.9,"ratingCount":214,"base":2400,"deposit":5000,"deliveryFee":250,"includedMiles":100,"minDays":1,"minAge":25,"hp":631,"zeroSixty":3.1,"seats":2,"houseMultiplier":1.05,"serviceFeePct":0.15,"rules":[{"id":"w","type":"DAY_OF_WEEK","priority":1,"active":true,"adjustment":1.15},{"id":"wk","type":"LENGTH_OF_RENTAL","priority":1,"active":true,"adjustment":0.9,"minDays":7}],"image":"https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=1200"},{"id":"sf90","make":"Ferrari","model":"SF90 Stradale","trim":"","year":2023,"category":"SUPERCAR","market":"MIA","marketName":"Miami","house":"Velocity Collection","elite":true,"instantBook":true,"rating":4.9,"ratingCount":214,"base":4200,"deposit":10000,"deliveryFee":350,"includedMiles":100,"minDays":1,"minAge":25,"hp":986,"zeroSixty":2.5,"seats":2,"houseMultiplier":1.05,"serviceFeePct":0.15,"rules":[{"id":"w","type":"DAY_OF_WEEK","priority":1,"active":true,"adjustment":1.15},{"id":"wk","type":"LENGTH_OF_RENTAL","priority":1,"active":true,"adjustment":0.9,"minDays":7}],"image":"https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=1200"},{"id":"cullinan","make":"Rolls-Royce","model":"Cullinan","trim":"Black Badge","year":2023,"category":"LUXURY_SUV","market":"LAX","marketName":"Los Angeles","house":"Sunset Prestige","elite":true,"instantBook":true,"rating":4.8,"ratingCount":131,"base":2100,"deposit":7500,"deliveryFee":200,"includedMiles":100,"minDays":1,"minAge":25,"hp":591,"zeroSixty":4.9,"seats":5,"houseMultiplier":1,"serviceFeePct":0.15,"rules":[],"image":"https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=1200"},{"id":"gt","make":"McLaren","model":"GT","trim":"","year":2022,"category":"GRAND_TOURER","market":"LAX","marketName":"Los Angeles","house":"Sunset Prestige","elite":true,"instantBook":true,"rating":4.8,"ratingCount":131,"base":1800,"deposit":6000,"deliveryFee":200,"includedMiles":100,"minDays":1,"minAge":25,"hp":612,"zeroSixty":3.1,"seats":2,"houseMultiplier":1,"serviceFeePct":0.15,"rules":[],"image":"https://images.unsplash.com/photo-1621135802920-133df287f89c?w=1200"},{"id":"taycan","make":"Porsche","model":"Taycan","trim":"Turbo S","year":2024,"category":"ELECTRIC","market":"LAX","marketName":"Los Angeles","house":"Sunset Prestige","elite":true,"instantBook":true,"rating":4.8,"ratingCount":131,"base":900,"deposit":2500,"deliveryFee":0,"includedMiles":150,"minDays":1,"minAge":25,"hp":750,"zeroSixty":2.6,"seats":4,"houseMultiplier":1,"serviceFeePct":0.15,"deliveryDeal":true,"deliveryDiscountPct":0.25,"dropoff":"LAS","rules":[{"id":"d","type":"DELIVERY_DEAL","priority":5,"active":true,"adjustment":1}],"image":"https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=1200"},{"id":"urus","make":"Lamborghini","model":"Urus","trim":"Performante","year":2024,"category":"LUXURY_SUV","market":"LAS","marketName":"Las Vegas","house":"Strip Exotics","elite":false,"instantBook":false,"rating":4.4,"ratingCount":58,"base":1500,"deposit":3500,"deliveryFee":150,"includedMiles":100,"minDays":1,"minAge":25,"hp":657,"zeroSixty":3.3,"seats":5,"houseMultiplier":0.98,"serviceFeePct":0.15,"rules":[{"id":"f1","type":"EVENT","priority":10,"active":true,"adjustment":1.6,"marketId":"LAS","startDate":"2026-11-19","endDate":"2026-11-23"}],"image":"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200"},{"id":"chiron","make":"Bugatti","model":"Chiron","trim":"","year":2021,"category":"HYPERCAR","market":"LAS","marketName":"Las Vegas","house":"Strip Exotics","elite":false,"instantBook":false,"rating":4.4,"ratingCount":58,"base":25000,"deposit":100000,"deliveryFee":0,"includedMiles":50,"minDays":1,"minAge":30,"hp":1479,"zeroSixty":2.4,"seats":2,"houseMultiplier":0.98,"serviceFeePct":0.15,"rules":[{"id":"f1","type":"EVENT","priority":10,"active":true,"adjustment":1.6,"marketId":"LAS","startDate":"2026-11-19","endDate":"2026-11-23"}],"image":"https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=1200"}];
+
+const money = (n) => n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+const money2 = (n) => n.toLocaleString("en-US", { style: "currency", currency: "USD" });
+const parseRules = (rs) => rs.map((r) => ({ ...r, startDate: r.startDate ? new Date(r.startDate) : null, endDate: r.endDate ? new Date(r.endDate) : null }));
+
+function computeQuote(it, start, end) {
+  return quote({
+    baseDailyRate: it.base, houseMultiplier: it.houseMultiplier, serviceFeePct: it.serviceFeePct,
+    deliveryFee: it.deliveryFee, securityDeposit: it.deposit, vehicleId: it.id,
+    category: it.category, pickupMarketId: it.market, startDate: start, endDate: end,
+    deliveryDeal: it.deliveryDeal, deliveryDiscountPct: it.deliveryDiscountPct,
+    rules: parseRules(it.rules), now: new Date(),
+  });
+}
+const plus = (days) => { const d = new Date(); d.setDate(d.getDate() + days); return d.toISOString().slice(0, 10); };
+
+let state = { view: "home", id: null, filters: { market: "", category: "", deal: false, max: "" } };
+function go(view, id) { state.view = view; if (id !== undefined) state.id = id; if (view === "detail") { state.dates = null; state.booked = false; } window.scrollTo(0, 0); render(); }
+window.go = go;
+
+function applyFilters(list) {
+  const f = state.filters;
+  const r = list.filter((it) =>
+    (!f.market || it.market === f.market) &&
+    (!f.category || it.category === f.category) &&
+    (!f.deal || it.deliveryDeal) &&
+    (!f.max || it.base <= Number(f.max)));
+  return r.sort((a, b) => Number(b.elite) - Number(a.elite) || a.base - b.base); // Elite-first, then price
+}
+
+function homeView() {
+  const start = new Date(plus(7)), end = new Date(plus(10));
+  const cats = [...new Set(INVENTORY.map((i) => i.category))];
+  const markets = [...new Set(INVENTORY.map((i) => i.market))];
+  const cards = applyFilters(INVENTORY).map((it) => {
+    const q = computeQuote(it, start, end);
+    const rn = q.appliedRules.length ? ` · rules: ${q.appliedRules.map((r) => r.type).join(", ")}` : "";
+    return `<div class="card" onclick="go('detail','${it.id}')">
+      <div class="photo" style="background-image:url('${it.image}')"></div>
+      <div class="body">
+        <div class="make">${it.make} · ${it.market}</div>
+        <div class="model">${it.model} ${it.trim} ${it.year}</div>
+        <div class="badges">
+          ${it.elite ? '<span class="badge elite">★ Elite House</span>' : ""}
+          ${it.deliveryDeal ? '<span class="badge deal">One-way deal</span>' : ""}
+          <span class="badge">${it.category.replaceAll("_", " ")}</span>
+          <span class="badge">★ ${it.rating.toFixed(1)} (${it.ratingCount})</span>
+        </div>
+        <div class="price"><b>${money(q.dailyRate)}</b> <span class="muted">/ day</span></div>
+        <div class="quoteline">3-day total <b>${money(q.total)}</b> all-in${rn}</div>
+      </div></div>`;
+  }).join("");
+  return `<section class="hero"><h1>Drive the extraordinary.</h1>
+    <p>Supercars and luxury vehicles from vetted rental houses — instant, all-in pricing.</p>
+    <div class="filters">
+      <select onchange="state.filters.market=this.value;render()"><option value="">All markets</option>${markets.map((m) => `<option ${state.filters.market === m ? "selected" : ""}>${m}</option>`).join("")}</select>
+      <select onchange="state.filters.category=this.value;render()"><option value="">All categories</option>${cats.map((c) => `<option value="${c}" ${state.filters.category === c ? "selected" : ""}>${c.replaceAll("_", " ")}</option>`).join("")}</select>
+      <input type="number" placeholder="Max $/day" value="${state.filters.max}" oninput="state.filters.max=this.value;render()" style="width:120px">
+      <label class="chk"><input type="checkbox" ${state.filters.deal ? "checked" : ""} onchange="state.filters.deal=this.checked;render()"> One-way deals only</label>
+    </div>
+    <div class="grid">${cards || '<p class="muted">No cars match those filters.</p>'}</div></section>`;
+}
+
+function detailView() {
+  const it = INVENTORY.find((i) => i.id === state.id);
+  const s = (state.dates && state.dates.start) || plus(7), e = (state.dates && state.dates.end) || plus(10);
+  const q = computeQuote(it, new Date(s), new Date(e));
+  const rules = q.appliedRules.map((r) => `<span class="rulechip">${r.type} ×${r.adjustment}</span>`).join("") || '<span class="muted" style="font-size:12px">base rate, no adjustments</span>';
+  const booked = state.booked;
+  return `<span class="back" onclick="go('home')">← All cars</span>
+   <section class="detail">
+    <div>
+      <div class="photo" style="background-image:url('${it.image}')"></div>
+      <h1 style="margin:14px 0 4px">${it.make} ${it.model} ${it.trim}</h1>
+      <div class="muted">${it.year} · ${it.category.replaceAll("_", " ")} · ${it.marketName}</div>
+      <div class="badges">
+        ${it.elite ? '<span class="badge elite">★ Elite House</span>' : ""}
+        <span class="badge">${it.house}</span>
+        <span class="badge">★ ${it.rating.toFixed(1)} (${it.ratingCount})</span>
+        ${it.instantBook ? '<span class="badge">⚡ Instant book</span>' : '<span class="badge">Request to book</span>'}
+        ${it.deliveryDeal ? `<span class="badge deal">One-way → ${it.dropoff}</span>` : ""}
+      </div>
+      <div class="specs">
+        <div class="spec"><div class="k">Horsepower</div><div class="v">${it.hp} hp</div></div>
+        <div class="spec"><div class="k">0–60 mph</div><div class="v">${it.zeroSixty}s</div></div>
+        <div class="spec"><div class="k">Seats</div><div class="v">${it.seats}</div></div>
+        <div class="spec"><div class="k">Included miles/day</div><div class="v">${it.includedMiles}</div></div>
+        <div class="spec"><div class="k">Security deposit</div><div class="v">${money(it.deposit)} hold</div></div>
+        <div class="spec"><div class="k">Min age</div><div class="v">${it.minAge}</div></div>
+      </div>
+      <div style="font-size:13px;color:var(--muted)">Pricing engine breakdown for these dates:</div>
+      <div style="margin-top:6px">${rules}</div>
+    </div>
+    <aside class="quote">
+      <h3>${money2(q.dailyRate)}<small> / day</small></h3>
+      <div class="muted" style="font-size:12px;margin-bottom:8px">${q.days}-day rental</div>
+      <div class="row"><span>${money2(q.dailyRate)} × ${q.days} days</span><span>${money2(q.rentalSubtotal)}</span></div>
+      ${q.deliveryFee > 0 ? `<div class="row"><span>Delivery</span><span>${money2(q.deliveryFee)}</span></div>` : ""}
+      <div class="row"><span>Service fee (15%)</span><span>${money2(q.serviceFee)}</span></div>
+      <div class="row total"><span>Total</span><b>${money2(q.total)}</b></div>
+      <div class="row" style="font-size:12px"><span>Refundable deposit hold</span><span>${money2(q.securityDeposit)}</span></div>
+      <div class="row" style="font-size:12px"><span>→ House payout</span><span>${money2(q.housePayoutAmount)}</span></div>
+      <label>Pick-up</label><input type="date" value="${s}" onchange="setDate('start',this.value)">
+      <label>Return</label><input type="date" value="${e}" onchange="setDate('end',this.value)">
+      <label>Email</label><input type="email" placeholder="you@example.com" value="${state.email || ""}" oninput="state.email=this.value">
+      <button class="btn" onclick="book()" ${booked ? "disabled" : ""}>${booked ? "Booked ✓" : (it.instantBook ? "Book instantly" : "Request to book")}</button>
+      ${booked ? `<div class="ok"><h4>${it.instantBook ? "Booking confirmed" : "Request sent"}</h4>
+        <div class="muted" style="font-size:13px">${it.make} ${it.model} · ${q.days} days · ${money2(q.total)} charged${it.instantBook ? ` · payout of ${money2(q.housePayoutAmount)} scheduled to ${it.house}` : ` · awaiting ${it.house} to accept`}.</div></div>` : ""}
+    </aside>
+   </section>`;
+}
+window.setDate = (k, v) => { state.dates = state.dates || { start: plus(7), end: plus(10) }; state.dates[k] = v; state.booked = false; render(); };
+window.book = () => { if (!state.email) { alert("Enter an email"); return; } state.booked = true; render(); };
+
+function render() { document.getElementById("view").innerHTML = state.view === "home" ? homeView() : detailView(); }
+
+// Inline on* handlers run in global scope, so expose the bits they reference.
+window.state = state;
+window.render = render;
+
+render();
+
+</script></body></html>

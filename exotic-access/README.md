@@ -114,7 +114,20 @@ docs/
 
 ---
 
-## Running it
+## See it instantly (no database)
+
+Open **`app.html`** in any browser — a self-contained, interactive preview of the
+marketplace. Browse the grid, filter by market/category/deals, open a car, change
+the rental dates and watch the quote recompute, and book for a confirmation. The
+prices are produced by the **real** engine: `lib/pricing.ts` is bundled to the
+browser with esbuild, so the preview can't drift from the app. Regenerate with:
+
+```bash
+npm install   # or just: npx esbuild
+npm run build:app   # -> writes app.html
+```
+
+## Running the full app
 
 ```bash
 cd exotic-access
