@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ExoticAccess — preview</title>
+<style>
+:root{--bg:#0a0a0b;--panel:#151518;--line:#26262b;--text:#f5f5f7;--muted:#9a9aa3;--accent:#d4af37;--accent-2:#c8102e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line)}
+.brand{font-weight:700;letter-spacing:.5px;font-size:20px}.brand span{color:var(--accent)}
+.hero{padding:48px 0 8px}.hero h1{font-size:38px;margin:0 0 8px}.hero p{color:var(--muted);margin:0}
+.tag{display:inline-block;margin:14px 0 0;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:24px 0 60px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:block}
+.card:hover{border-color:var(--accent)}
+.card .photo{aspect-ratio:16/10;background:#1f1f24 center/cover}
+.card .body{padding:14px 16px 18px}
+.make{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.model{font-size:18px;font-weight:650;margin:2px 0 8px}
+.price{font-size:16px}.price b{color:var(--accent)}.muted{color:var(--muted)}
+.quoteline{font-size:12px;color:var(--muted);margin-top:8px}.quoteline b{color:var(--text)}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.badge{font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.badge.elite{border-color:var(--accent);color:var(--accent)}.badge.deal{border-color:var(--accent-2);color:#ff6b81}
+</style></head>
+<body><div class="wrap">
+<nav class="nav"><div class="brand">EXOTIC<span>ACCESS</span></div><div class="muted" style="font-size:14px">Vetted houses · Instant quotes</div></nav>
+<section class="hero"><h1>Drive the extraordinary.</h1><p>Supercars and luxury vehicles from vetted rental houses — instant, all-in pricing.</p>
+<span class="tag">Static preview · prices computed live by lib/pricing.ts · Elite houses ranked first</span></section>
+<section class="grid">
+    <a class="card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=1200')"></div>
+      <div class="body">
+        <div class="make">Porsche · LAX</div>
+        <div class="model">Taycan Turbo S 2024</div>
+        <div class="badges">
+          <span class="badge elite">★ Elite House</span>
+          <span class="badge deal">One-way deal</span>
+          <span class="badge">ELECTRIC</span>
+          <span class="badge">★ 4.8 (131)</span>
+        </div>
+        <div class="price"><b>$506</b> <span class="muted">/ day</span></div>
+        <div class="quoteline">3-day total <b>$1,747</b> all-in · rules: DELIVERY_DEAL</div>
+      </div>
+    </a>
+    <a class="card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1621135802920-133df287f89c?w=1200')"></div>
+      <div class="body">
+        <div class="make">McLaren · LAX</div>
+        <div class="model">GT  2022</div>
+        <div class="badges">
+          <span class="badge elite">★ Elite House</span>
+          
+          <span class="badge">GRAND TOURER</span>
+          <span class="badge">★ 4.8 (131)</span>
+        </div>
+        <div class="price"><b>$1,800</b> <span class="muted">/ day</span></div>
+        <div class="quoteline">3-day total <b>$6,410</b> all-in</div>
+      </div>
+    </a>
+    <a class="card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=1200')"></div>
+      <div class="body">
+        <div class="make">Rolls-Royce · LAX</div>
+        <div class="model">Cullinan Black Badge 2023</div>
+        <div class="badges">
+          <span class="badge elite">★ Elite House</span>
+          
+          <span class="badge">LUXURY SUV</span>
+          <span class="badge">★ 4.8 (131)</span>
+        </div>
+        <div class="price"><b>$2,100</b> <span class="muted">/ day</span></div>
+        <div class="quoteline">3-day total <b>$7,445</b> all-in</div>
+      </div>
+    </a>
+    <a class="card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=1200')"></div>
+      <div class="body">
+        <div class="make">Lamborghini · MIA</div>
+        <div class="model">Huracán EVO Spyder 2023</div>
+        <div class="badges">
+          <span class="badge elite">★ Elite House</span>
+          
+          <span class="badge">CONVERTIBLE</span>
+          <span class="badge">★ 4.9 (214)</span>
+        </div>
+        <div class="price"><b>$2,898</b> <span class="muted">/ day</span></div>
+        <div class="quoteline">3-day total <b>$10,248</b> all-in · rules: DAY_OF_WEEK</div>
+      </div>
+    </a>
+    <a class="card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=1200')"></div>
+      <div class="body">
+        <div class="make">Ferrari · MIA</div>
+        <div class="model">SF90 Stradale  2023</div>
+        <div class="badges">
+          <span class="badge elite">★ Elite House</span>
+          
+          <span class="badge">SUPERCAR</span>
+          <span class="badge">★ 4.9 (214)</span>
+        </div>
+        <div class="price"><b>$5,072</b> <span class="muted">/ day</span></div>
+        <div class="quoteline">3-day total <b>$17,847</b> all-in · rules: DAY_OF_WEEK</div>
+      </div>
+    </a>
+    <a class="card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200')"></div>
+      <div class="body">
+        <div class="make">Lamborghini · LAS</div>
+        <div class="model">Urus Performante 2024</div>
+        <div class="badges">
+          
+          
+          <span class="badge">LUXURY SUV</span>
+          <span class="badge">★ 4.4 (58)</span>
+        </div>
+        <div class="price"><b>$1,470</b> <span class="muted">/ day</span></div>
+        <div class="quoteline">3-day total <b>$5,222</b> all-in</div>
+      </div>
+    </a>
+    <a class="card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=1200')"></div>
+      <div class="body">
+        <div class="make">Bugatti · LAS</div>
+        <div class="model">Chiron  2021</div>
+        <div class="badges">
+          
+          
+          <span class="badge">HYPERCAR</span>
+          <span class="badge">★ 4.4 (58)</span>
+        </div>
+        <div class="price"><b>$24,500</b> <span class="muted">/ day</span></div>
+        <div class="quoteline">3-day total <b>$84,525</b> all-in</div>
+      </div>
+    </a></section>
+</div></body></html>
